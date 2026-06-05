@@ -15,11 +15,11 @@ module fetch #(
     input wire flush,  // Triggered on branch misprediction
 
     // Branch Resolution (from Decode Stage)
-    input wire act_branch_valid,
-    input wire act_branch_taken,
-    input wire [PC_WIDTH-1:0] act_target,
-    input wire [PC_WIDTH-1:0] act_pc,
-    input wire act_mispredict,
+    input wire actual_branch_valid,
+    input wire actual_branch_taken,
+    input wire [PC_WIDTH-1:0] actual_target,
+    input wire [PC_WIDTH-1:0] actual_pc,
+    input wire actual_mispredict,
 
     // Instruction Memory Interface
     output wire [PC_WIDTH-1:0] imem_addr,
@@ -68,7 +68,7 @@ module fetch #(
 
   // Priority Decoder for next PC and Instruction Fetching 
   assign imem_addr = pc_reg;
-  assign next_pc   = act_mispredict ? (act_branch_taken ? act_target : act_pc + 4) : 
+  assign next_pc   = actual_mispredict ? (actual_branch_taken ? actual_target : actual_pc + 4) : 
                      stall ? pc_reg : 
                      pred_taken ? pred_target : 
                      (pc_reg + 4);
@@ -98,8 +98,8 @@ module fetch #(
   end
 
   // Sequential Logic : BHT/BTB/Tag Update (from Decode)
-  wire    [BT_ADDR_WIDTH-1:0] update_idx = act_pc[BT_ADDR_WIDTH+1:2];
-  wire    [    TAG_WIDTH-1:0] update_tag = act_pc[PC_WIDTH-1:BT_ADDR_WIDTH+2];
+  wire    [BT_ADDR_WIDTH-1:0] update_idx = actual_pc[BT_ADDR_WIDTH+1:2];
+  wire    [    TAG_WIDTH-1:0] update_tag = actual_pc[PC_WIDTH-1:BT_ADDR_WIDTH+2];
   integer                     i;
 
   always @(posedge clk or negedge rst_n) begin
@@ -111,23 +111,23 @@ module fetch #(
         tag_table[i] <= {TAG_WIDTH{1'b0}};
       end
 
-    end else if (act_branch_valid) begin
+    end else if (actual_branch_valid) begin
       // Force override if tags don't match
       if (tag_table[update_idx] != update_tag) begin
         val_table[update_idx] <= 1'b1;
-        btb_table[update_idx] <= act_target;
+        btb_table[update_idx] <= actual_target;
         tag_table[update_idx] <= update_tag;
-        bht_table[update_idx] <= act_branch_taken ? WT : WNT;
+        bht_table[update_idx] <= actual_branch_taken ? WT : WNT;
 
       end else begin
         val_table[update_idx] <= 1'b1;
-        btb_table[update_idx] <= act_target;
-
+        btb_table[update_idx] <= actual_target;
+        // Saturating Counter Machine
         case (bht_table[update_idx])
-          SNT:     bht_table[update_idx] <= act_branch_taken ? WNT : SNT;
-          WNT:     bht_table[update_idx] <= act_branch_taken ? WT : SNT;
-          WT:      bht_table[update_idx] <= act_branch_taken ? ST : WNT;
-          ST:      bht_table[update_idx] <= act_branch_taken ? ST : WT;
+          SNT:     bht_table[update_idx] <= actual_branch_taken ? WNT : SNT;
+          WNT:     bht_table[update_idx] <= actual_branch_taken ? WT : SNT;
+          WT:      bht_table[update_idx] <= actual_branch_taken ? ST : WNT;
+          ST:      bht_table[update_idx] <= actual_branch_taken ? ST : WT;
           default: bht_table[update_idx] <= WT;
         endcase
       end
