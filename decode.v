@@ -43,7 +43,7 @@ module decode #(
     output reg [4:0] id_ex_rs1_addr,
     output reg [4:0] id_ex_rs2_addr,
 
-    // Inter-stage signals
+    // Inter-stage signals (from ID)
     output reg [3:0] id_alu_op,     // ALU operation code
     output reg       id_alu_src,    // 0 = Reg, 1 = Imm for second ALU operand
     output reg       id_mem_read,   // Read from memory?
@@ -175,6 +175,7 @@ module decode #(
   wire eq = (rs1_data_fwd == rs2_data_fwd);
   wire neq = !eq;
 
+  // Signed comparisons for BLT/BGE
   wire signed [31:0] s_rs1 = rs1_data_fwd;
   wire signed [31:0] s_rs2 = rs2_data_fwd;
   wire lt = (s_rs1 < s_rs2);
@@ -210,6 +211,7 @@ module decode #(
       id_mem_write <= 0;
       id_reg_write <= 0;
       id_wb_sel    <= 0;
+
     end else if (flush || actual_mispredict) begin
       // Insert NOP (Bubble) for flushing or misprediction
       id_pc        <= 0;
@@ -225,6 +227,7 @@ module decode #(
       id_mem_write <= 0;
       id_reg_write <= 0;
       id_wb_sel    <= 0;
+
     end else if (!stall) begin
       // Normal pipeline advance
       id_pc        <= if_pc;
