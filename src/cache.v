@@ -37,7 +37,7 @@ module cache #(
 
   // Combinational Logic: Read & Hit/Miss
   wire valid_match = valid_array[index];
-  wire tag_match = (tag_array[index==tag]);
+  wire tag_match = (tag_array[index] == tag);
   wire is_hit = req && valid_match && tag_match;
 
   // FSM States for Cache

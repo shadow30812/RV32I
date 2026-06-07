@@ -23,7 +23,7 @@ module fetch #(
 
     // Instruction Memory Interface
     output wire [PC_WIDTH-1:0] imem_addr,
-    output wire [31:0] imem_data,  // RISC-V ISA specifies 32-bit instructions
+    input wire [31:0] imem_data,  // RISC-V ISA specifies 32-bit instructions
 
     // IF/ID Pipeline Registers
     output reg [PC_WIDTH-1:0] if_id_pc,

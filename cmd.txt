@@ -1,0 +1,1 @@
+cd ~/Codes/verilog && iverilog -o RV32I/sim.out RV32I/src/*.v SPI/src/*.v RV32I/test_risc.v && vvp RV32I/sim.out && gtkwave RV32I/dump_risc.vcd

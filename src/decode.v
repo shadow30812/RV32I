@@ -67,7 +67,7 @@ module decode #(
   wire [2:0] funct3 = if_id_inst[14:12];
   wire [6:0] funct7 = if_id_inst[31:25];
 
-  assign rs1_addr = if_id_inst[19:15];
+  assign rs1_addr = (opcode == 7'b0110111) ? 5'b0 : if_id_inst[19:15];  // Special case- LUI
   assign rs2_addr = if_id_inst[24:20];
   wire [ 4:0] rd_addr = if_id_inst[11:7];
 
@@ -77,6 +77,8 @@ module decode #(
 
   always @(*) begin
     case (opcode)
+      7'b0110111:  // U-Type (LUI)
+      imm_val = {if_id_inst[31:12], 12'b0};
       7'b0010011:  // I-Type (ADDI, ANDI)
       imm_val = {{20{if_id_inst[31]}}, if_id_inst[31:20]};
       7'b0000011:  // I-Type (LW)
@@ -161,6 +163,12 @@ module decode #(
                          // Branch comparisons are evaluated independently
         ctrl_reg_write = 1'b0;
         ctrl_alu_src   = 1'b0;
+      end
+
+      7'b0110111: begin  // LUI (Load Upper Immediate)
+        ctrl_reg_write = 1'b1;
+        ctrl_alu_src   = 1'b1;     // Use immediate
+        ctrl_alu_op    = 4'b0000;  // ADD (x0 + imm)
       end
 
       default: ctrl_reg_write = 1'b0;

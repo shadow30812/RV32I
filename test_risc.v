@@ -65,7 +65,7 @@ module tb_risc;
 
     #20 rst_n = 1;
 
-    #5000;
+    #480;
 
     $display("Simulation Finished.");
     $finish;
