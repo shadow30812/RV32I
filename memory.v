@@ -33,7 +33,7 @@ module memory #(
 
     // Interfaces to MMIO Controller
     output wire mmio_req,
-    output wire mmio_we,
+    output wire mmio_wr_en,
     output wire [31:0] mmio_addr,
     output wire [31:0] mmio_wdata,
     input wire [31:0] mmio_rdata,
