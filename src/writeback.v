@@ -26,15 +26,15 @@ module writeback #(
 
   always @(*) begin
     case (mem_wb_sel)
-      2'b00:   write_data = mem_alu_result;  // R-Type, I-Type (ALU)
-      2'b01:   write_data = mem_read_data;  // LW (Memory Read)
-      2'b10:   write_data = mem_pc + 4;  // JAL (Return Address)
+      2'b00:   write_data = mem_wb_alu_result;  // R-Type, I-Type (ALU)
+      2'b01:   write_data = mem_wb_read_data;  // LW (Memory Read)
+      2'b10:   write_data = mem_wb_pc + 4;  // JAL (Return Address)
       default: write_data = 32'h0;
     endcase
   end
 
   assign wb_fwd_data  = write_data;
-  assign wb_rd_addr   = mem_rd_addr;
+  assign wb_rd_addr   = mem_wb_rd_addr;
   assign wb_reg_write = mem_reg_write;
 
 endmodule

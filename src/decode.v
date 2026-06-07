@@ -78,15 +78,15 @@ module decode #(
   always @(*) begin
     case (opcode)
       7'b0010011:  // I-Type (ADDI, ANDI)
-      imm_val = {{20{if_inst[31]}}, if_inst[31:20]};
+      imm_val = {{20{if_id_inst[31]}}, if_id_inst[31:20]};
       7'b0000011:  // I-Type (LW)
-      imm_val = {{20{if_inst[31]}}, if_inst[31:20]};
+      imm_val = {{20{if_id_inst[31]}}, if_id_inst[31:20]};
       7'b0100011:  // S-Type (SW)
-      imm_val = {{20{if_inst[31]}}, if_inst[31:25], if_inst[11:7]};
+      imm_val = {{20{if_id_inst[31]}}, if_id_inst[31:25], if_id_inst[11:7]};
       7'b1100011:  // B-Type (BEQ, BNE)
-      imm_val = {{20{if_inst[31]}}, if_inst[7], if_inst[30:25], if_inst[11:8], 1'b0};
+      imm_val = {{20{if_id_inst[31]}}, if_id_inst[7], if_id_inst[30:25], if_id_inst[11:8], 1'b0};
       7'b1101111:  // J-Type (JAL)
-      imm_val = {{12{if_inst[31]}}, if_inst[19:12], if_inst[20], if_inst[30:21], 1'b0};
+      imm_val = {{12{if_id_inst[31]}}, if_id_inst[19:12], if_id_inst[20], if_id_inst[30:21], 1'b0};
       default:  // Failsafe
       imm_val = RV32I_NOA;
     endcase
@@ -170,7 +170,7 @@ module decode #(
 
   // 1-cycle branch resolution logic
   wire is_branch = (opcode == 7'b1100011);
-  wire is_branch = (opcode == 7'b1101111);
+  wire is_jal = (opcode == 7'b1101111);
 
   wire eq = (rs1_data_fwd == rs2_data_fwd);
   wire neq = !eq;
@@ -191,58 +191,58 @@ module decode #(
   assign actual_branch_taken = (is_branch && branch_condition_met) || is_jal;
   assign actual_target       = if_id_pc + imm_val;
   assign actual_pc           = if_id_pc;
-  assign actual_mispredict   = actual_branch_valid && (if_pred_taken != actual_branch_taken);
+  assign actual_mispredict   = actual_branch_valid && (if_id_pred_taken != actual_branch_taken);
   // B-Type and JAL targets are PC-relative constants for RV32I
   // so correctness of direction and BTB tag guarantess correctness
 
   // Sequential Logic: ID/EX Pipeline Register Update
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-      id_pc        <= 0;
-      id_rs1_data  <= 0;
-      id_rs2_data  <= 0;
-      id_imm       <= 0;
-      id_rd_addr   <= 0;
-      id_rs1_addr  <= 0;
-      id_rs2_addr  <= 0;
-      id_alu_op    <= 0;
-      id_alu_src   <= 0;
-      id_mem_read  <= 0;
-      id_mem_write <= 0;
-      id_reg_write <= 0;
-      id_wb_sel    <= 0;
+      id_ex_pc       <= 0;
+      id_ex_rs1_data <= 0;
+      id_ex_rs2_data <= 0;
+      id_ex_imm      <= 0;
+      id_ex_rd_addr  <= 0;
+      id_ex_rs1_addr <= 0;
+      id_ex_rs2_addr <= 0;
+      id_alu_op      <= 0;
+      id_alu_src     <= 0;
+      id_mem_read    <= 0;
+      id_mem_write   <= 0;
+      id_reg_write   <= 0;
+      id_wb_sel      <= 0;
 
     end else if (flush || actual_mispredict) begin
       // Insert NOP (Bubble) for flushing or misprediction
-      id_pc        <= 0;
-      id_rs1_data  <= 0;
-      id_rs2_data  <= 0;
-      id_imm       <= 0;
-      id_rd_addr   <= 0;
-      id_rs1_addr  <= 0;
-      id_rs2_addr  <= 0;
-      id_alu_op    <= 0;
-      id_alu_src   <= 0;
-      id_mem_read  <= 0;
-      id_mem_write <= 0;
-      id_reg_write <= 0;
-      id_wb_sel    <= 0;
+      id_ex_pc       <= 0;
+      id_ex_rs1_data <= 0;
+      id_ex_rs2_data <= 0;
+      id_ex_imm      <= 0;
+      id_ex_rd_addr  <= 0;
+      id_ex_rs1_addr <= 0;
+      id_ex_rs2_addr <= 0;
+      id_alu_op      <= 0;
+      id_alu_src     <= 0;
+      id_mem_read    <= 0;
+      id_mem_write   <= 0;
+      id_reg_write   <= 0;
+      id_wb_sel      <= 0;
 
     end else if (!stall) begin
       // Normal pipeline advance
-      id_pc        <= if_pc;
-      id_rs1_data  <= rs1_data_fwd;
-      id_rs2_data  <= rs2_data_fwd;
-      id_imm       <= imm_val;
-      id_rd_addr   <= rd_addr;
-      id_rs1_addr  <= rs1_addr;
-      id_rs2_addr  <= rs2_addr;
-      id_alu_op    <= ctrl_alu_op;
-      id_alu_src   <= ctrl_alu_src;
-      id_mem_read  <= ctrl_mem_read;
-      id_mem_write <= ctrl_mem_write;
-      id_reg_write <= ctrl_reg_write;
-      id_wb_sel    <= ctrl_wb_sel;
+      id_ex_pc       <= if_id_pc;
+      id_ex_rs1_data <= rs1_data_fwd;
+      id_ex_rs2_data <= rs2_data_fwd;
+      id_ex_imm      <= imm_val;
+      id_ex_rd_addr  <= rd_addr;
+      id_ex_rs1_addr <= rs1_addr;
+      id_ex_rs2_addr <= rs2_addr;
+      id_alu_op      <= ctrl_alu_op;
+      id_alu_src     <= ctrl_alu_src;
+      id_mem_read    <= ctrl_mem_read;
+      id_mem_write   <= ctrl_mem_write;
+      id_reg_write   <= ctrl_reg_write;
+      id_wb_sel      <= ctrl_wb_sel;
     end
   end
 

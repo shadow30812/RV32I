@@ -84,10 +84,10 @@ module memory #(
       mem_wb_sel        <= 2'b00;
 
     end else if (!stall_mem) begin
-      mem_wb_pc         <= ex_pc;
-      mem_wb_alu_result <= ex_alu_result;
+      mem_wb_pc         <= ex_mem_pc;
+      mem_wb_alu_result <= ex_mem_alu_result;
       mem_wb_read_data  <= read_data_mux;
-      mem_wb_rd_addr    <= ex_rd_addr;
+      mem_wb_rd_addr    <= ex_mem_rd_addr;
       mem_reg_write     <= ex_reg_write;
       mem_wb_sel        <= ex_wb_sel;
     end

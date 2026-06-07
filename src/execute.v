@@ -70,7 +70,7 @@ module execute #(
 
   // ALU
   wire [31:0] alu_in1 = fwd_rs1;
-  wire [31:0] alu_in2 = id_alu_src ? id_imm : forwarded_rs2;
+  wire [31:0] alu_in2 = id_alu_src ? id_ex_imm : fwd_rs2;
   reg  [31:0] alu_out;
 
   localparam RV32I_NOA = 32'h0;
