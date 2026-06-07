@@ -25,7 +25,7 @@ module memory #(
 
     // Interfaces to L1 Data Cache
     output wire cache_req,
-    output wire cache_we,
+    output wire cache_wr_en,
     output wire [31:0] cache_addr,
     output wire [31:0] cache_wdata,
     input wire [31:0] cache_rdata,
