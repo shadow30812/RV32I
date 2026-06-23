@@ -1,0 +1,21 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../../../../../../home/shadow30812/Vivado/2025.2/data/rsb/busdef" \
+"../../../../RV32I.srcs/sources_1/imports/src/cache.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/core.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/decode.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/execute.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/fetch.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/fifo.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/hazard.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/memory.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/regfile.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/system.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/top.v" \
+"../../../../RV32I.srcs/sources_1/imports/src/writeback.v" \
+"../../../../RV32I.srcs/sim_1/imports/RV32I/test_risc.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

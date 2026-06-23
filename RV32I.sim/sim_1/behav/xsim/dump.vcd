@@ -1,0 +1,1149 @@
+$date
+   Fri Jun 19 22:26:05 2026
+$end
+
+$version
+  2025.2
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module tb_risc $end
+$var reg 1 ! clk $end
+$var reg 1 " rst_n $end
+$var wire 32 # imem_addr [31:0] $end
+$var reg 32 $ imem_data [31:0] $end
+$var reg 1 % spi_miso $end
+$var wire 1 & spi_mosi $end
+$var wire 1 ' spi_sclk $end
+$var wire 1 ( spi_cs_n $end
+$var reg 8 ) spi_rx_data [7:0] $end
+$var integer 32 * bit_cnt [31:0] $end
+$scope module u_system $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 32 # imem_addr [31:0] $end
+$var wire 32 - imem_data [31:0] $end
+$var wire 1 . spi_miso $end
+$var wire 1 & spi_mosi $end
+$var wire 1 ' spi_sclk $end
+$var wire 1 ( spi_cs_n $end
+$var wire 32 / if_id_pc [31:0] $end
+$var wire 32 0 if_id_inst [31:0] $end
+$var wire 1 1 if_id_pred_taken $end
+$var wire 32 2 actual_target [31:0] $end
+$var wire 32 3 actual_pc [31:0] $end
+$var wire 1 4 actual_branch_valid $end
+$var wire 1 5 actual_branch_taken $end
+$var wire 1 6 actual_mispredict $end
+$var wire 32 7 rs1_data [31:0] $end
+$var wire 32 8 rs2_data [31:0] $end
+$var wire 5 9 rs1_addr [4:0] $end
+$var wire 5 : rs2_addr [4:0] $end
+$var wire 32 ; id_ex_pc [31:0] $end
+$var wire 32 < id_ex_rs1_data [31:0] $end
+$var wire 32 = id_ex_rs2_data [31:0] $end
+$var wire 32 > id_ex_imm [31:0] $end
+$var wire 5 ? id_ex_rd_addr [4:0] $end
+$var wire 5 @ id_ex_rs1_addr [4:0] $end
+$var wire 5 A id_ex_rs2_addr [4:0] $end
+$var wire 4 B id_alu_op [3:0] $end
+$var wire 2 C id_wb_sel [1:0] $end
+$var wire 1 D id_alu_src $end
+$var wire 1 E id_mem_read $end
+$var wire 1 F id_mem_write $end
+$var wire 1 G id_reg_write $end
+$var wire 32 H ex_mem_pc [31:0] $end
+$var wire 32 I ex_mem_alu_result [31:0] $end
+$var wire 32 J ex_mem_rs2_data [31:0] $end
+$var wire 5 K ex_mem_rd_addr [4:0] $end
+$var wire 2 L ex_wb_sel [1:0] $end
+$var wire 1 M ex_mem_read $end
+$var wire 1 N ex_mem_write $end
+$var wire 1 O ex_reg_write $end
+$var wire 32 P mem_wb_pc [31:0] $end
+$var wire 32 Q mem_wb_alu_result [31:0] $end
+$var wire 32 R mem_wb_read_data [31:0] $end
+$var wire 5 S mem_wb_rd_addr [4:0] $end
+$var wire 2 T mem_wb_sel [1:0] $end
+$var wire 1 U mem_reg_write $end
+$var wire 32 V wb_fwd_data [31:0] $end
+$var wire 5 W wb_rd_addr [4:0] $end
+$var wire 1 X wb_reg_write $end
+$var wire 32 Y rs1_data_fwd [31:0] $end
+$var wire 32 Z rs2_data_fwd [31:0] $end
+$var wire 2 [ fwd_a [1:0] $end
+$var wire 2 \ fwd_b [1:0] $end
+$var wire 1 ] stall_if $end
+$var wire 1 ^ stall_id $end
+$var wire 1 _ stall_ex $end
+$var wire 1 ` stall_mem $end
+$var wire 1 a flush_ex $end
+$var wire 32 b cache_addr [31:0] $end
+$var wire 32 c cache_wdata [31:0] $end
+$var wire 32 d cache_rdata [31:0] $end
+$var wire 1 e cache_req $end
+$var wire 1 f cache_wr_en $end
+$var wire 1 g cache_hit $end
+$var wire 32 h mmio_addr [31:0] $end
+$var wire 32 i mmio_wdata [31:0] $end
+$var wire 32 j mmio_rdata [31:0] $end
+$var wire 1 k mmio_req $end
+$var wire 1 l mmio_wr_en $end
+$var wire 1 m mmio_ready $end
+$var wire 1 n spi_full $end
+$var wire 1 o spi_empty $end
+$var wire 1 p spi_busy $end
+$var wire 1 q spi_rx_valid $end
+$var wire 8 r spi_rx_data [7:0] $end
+$var reg 1 s spi_cpol $end
+$var reg 1 t spi_cpha $end
+$var wire 1 u spi_wr_en $end
+$scope module u_fetch $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 1 ] stall $end
+$var wire 1 6 flush $end
+$var wire 1 4 actual_branch_valid $end
+$var wire 1 5 actual_branch_taken $end
+$var wire 32 2 actual_target [31:0] $end
+$var wire 32 3 actual_pc [31:0] $end
+$var wire 1 6 actual_mispredict $end
+$var wire 32 # imem_addr [31:0] $end
+$var wire 32 - imem_data [31:0] $end
+$var reg 32 v if_id_pc [31:0] $end
+$var reg 32 w if_id_inst [31:0] $end
+$var reg 1 x if_id_pred_taken $end
+$var reg 32 y pc_reg [31:0] $end
+$var wire 32 z next_pc [31:0] $end
+$var wire 8 { fetch_idx [7:0] $end
+$var wire 22 | fetch_tag [21:0] $end
+$var wire 1 } current_val [0:0] $end
+$var wire 2 ~ current_bht [1:0] $end
+$var wire 32 !! current_btb [31:0] $end
+$var wire 22 "! current_tag [21:0] $end
+$var wire 1 #! tag_match $end
+$var wire 1 $! pred_taken $end
+$var wire 32 %! pred_target [31:0] $end
+$var wire 8 &! update_idx [7:0] $end
+$var wire 22 '! update_tag [21:0] $end
+$var integer 32 (! i [31:0] $end
+$upscope $end
+$scope module u_decode $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 1 ^ stall $end
+$var wire 1 6 flush $end
+$var wire 32 / if_id_pc [31:0] $end
+$var wire 32 0 if_id_inst [31:0] $end
+$var wire 1 1 if_id_pred_taken $end
+$var wire 32 Y rs1_data_fwd [31:0] $end
+$var wire 32 Z rs2_data_fwd [31:0] $end
+$var wire 5 9 rs1_addr [4:0] $end
+$var wire 5 : rs2_addr [4:0] $end
+$var wire 1 4 actual_branch_valid $end
+$var wire 1 5 actual_branch_taken $end
+$var wire 32 2 actual_target [31:0] $end
+$var wire 32 3 actual_pc [31:0] $end
+$var wire 1 6 actual_mispredict $end
+$var reg 32 )! id_ex_pc [31:0] $end
+$var reg 32 *! id_ex_rs1_data [31:0] $end
+$var reg 32 +! id_ex_rs2_data [31:0] $end
+$var reg 32 ,! id_ex_imm [31:0] $end
+$var reg 5 -! id_ex_rd_addr [4:0] $end
+$var reg 5 .! id_ex_rs1_addr [4:0] $end
+$var reg 5 /! id_ex_rs2_addr [4:0] $end
+$var reg 4 0! id_alu_op [3:0] $end
+$var reg 1 1! id_alu_src $end
+$var reg 1 2! id_mem_read $end
+$var reg 1 3! id_mem_write $end
+$var reg 1 4! id_reg_write $end
+$var reg 2 5! id_wb_sel [1:0] $end
+$var wire 7 6! opcode [6:0] $end
+$var wire 3 7! funct3 [2:0] $end
+$var wire 7 8! funct7 [6:0] $end
+$var wire 5 9! rd_addr [4:0] $end
+$var reg 32 :! imm_val [31:0] $end
+$var reg 1 ;! ctrl_alu_src $end
+$var reg 1 <! ctrl_mem_read $end
+$var reg 1 =! ctrl_mem_write $end
+$var reg 1 >! ctrl_reg_write $end
+$var reg 2 ?! ctrl_wb_sel [1:0] $end
+$var reg 4 @! ctrl_alu_op [3:0] $end
+$var wire 1 A! is_branch $end
+$var wire 1 B! is_jal $end
+$var wire 1 C! eq $end
+$var wire 1 D! neq $end
+$var wire 32 E! s_rs1 [31:0] $end
+$var wire 32 F! s_rs2 [31:0] $end
+$var wire 1 G! lt $end
+$var wire 1 H! ge $end
+$var wire 1 I! branch_condition_met $end
+$upscope $end
+$scope module u_regfile $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 5 9 rs1_addr [4:0] $end
+$var wire 32 7 rs1_data [31:0] $end
+$var wire 5 : rs2_addr [4:0] $end
+$var wire 32 8 rs2_data [31:0] $end
+$var wire 1 X reg_write $end
+$var wire 5 W rd_addr [4:0] $end
+$var wire 32 V rd_data [31:0] $end
+$var integer 32 J! i [31:0] $end
+$upscope $end
+$scope module u_execute $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 1 _ stall $end
+$var wire 1 a flush $end
+$var wire 32 ; id_ex_pc [31:0] $end
+$var wire 32 < id_ex_rs1_data [31:0] $end
+$var wire 32 = id_ex_rs2_data [31:0] $end
+$var wire 32 > id_ex_imm [31:0] $end
+$var wire 5 ? id_ex_rd_addr [4:0] $end
+$var wire 4 B id_alu_op [3:0] $end
+$var wire 1 D id_alu_src $end
+$var wire 1 E id_mem_read $end
+$var wire 1 F id_mem_write $end
+$var wire 1 G id_reg_write $end
+$var wire 2 C id_wb_sel [1:0] $end
+$var wire 32 I mem_fwd_data [31:0] $end
+$var wire 32 V wb_fwd_data [31:0] $end
+$var wire 2 [ fwd_a [1:0] $end
+$var wire 2 \ fwd_b [1:0] $end
+$var reg 32 K! ex_mem_pc [31:0] $end
+$var reg 32 L! ex_mem_alu_result [31:0] $end
+$var reg 32 M! ex_mem_rs2_data [31:0] $end
+$var reg 5 N! ex_mem_rd_addr [4:0] $end
+$var reg 1 O! ex_mem_read $end
+$var reg 1 P! ex_mem_write $end
+$var reg 1 Q! ex_reg_write $end
+$var reg 2 R! ex_wb_sel [1:0] $end
+$var reg 32 S! fwd_rs1 [31:0] $end
+$var reg 32 T! fwd_rs2 [31:0] $end
+$var wire 32 U! alu_in1 [31:0] $end
+$var wire 32 V! alu_in2 [31:0] $end
+$var reg 32 W! alu_out [31:0] $end
+$var wire 32 X! s_alu_in1 [31:0] $end
+$var wire 32 Y! s_alu_in2 [31:0] $end
+$upscope $end
+$scope module u_memory $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 32 H ex_mem_pc [31:0] $end
+$var wire 32 I ex_mem_alu_result [31:0] $end
+$var wire 32 J ex_mem_rs2_data [31:0] $end
+$var wire 5 K ex_mem_rd_addr [4:0] $end
+$var wire 1 M ex_mem_read $end
+$var wire 1 N ex_mem_write $end
+$var wire 1 O ex_reg_write $end
+$var wire 2 L ex_wb_sel [1:0] $end
+$var wire 1 e cache_req $end
+$var wire 1 f cache_wr_en $end
+$var wire 32 b cache_addr [31:0] $end
+$var wire 32 c cache_wdata [31:0] $end
+$var wire 32 d cache_rdata [31:0] $end
+$var wire 1 g cache_hit $end
+$var wire 1 k mmio_req $end
+$var wire 1 l mmio_wr_en $end
+$var wire 32 h mmio_addr [31:0] $end
+$var wire 32 i mmio_wdata [31:0] $end
+$var wire 32 j mmio_rdata [31:0] $end
+$var wire 1 m mmio_ready $end
+$var reg 32 Z! mem_wb_pc [31:0] $end
+$var reg 32 [! mem_wb_alu_result [31:0] $end
+$var reg 32 \! mem_wb_read_data [31:0] $end
+$var reg 5 ]! mem_wb_rd_addr [4:0] $end
+$var reg 1 ^! mem_reg_write $end
+$var reg 2 _! mem_wb_sel [1:0] $end
+$var wire 1 ` stall_mem $end
+$var wire 1 `! is_mem_access $end
+$var wire 1 a! is_mmio $end
+$var wire 1 b! is_cache $end
+$var wire 32 c! read_data_mux [31:0] $end
+$upscope $end
+$scope module u_writeback $end
+$var wire 32 P mem_wb_pc [31:0] $end
+$var wire 32 Q mem_wb_alu_result [31:0] $end
+$var wire 32 R mem_wb_read_data [31:0] $end
+$var wire 5 S mem_wb_rd_addr [4:0] $end
+$var wire 1 U mem_reg_write $end
+$var wire 2 T mem_wb_sel [1:0] $end
+$var wire 32 V wb_fwd_data [31:0] $end
+$var wire 5 W wb_rd_addr [4:0] $end
+$var wire 1 X wb_reg_write $end
+$var reg 32 d! write_data [31:0] $end
+$upscope $end
+$scope module u_hazard $end
+$var wire 1 ` stall_mem $end
+$var wire 5 9 id_ex_rs1_addr [4:0] $end
+$var wire 5 : id_ex_rs2_addr [4:0] $end
+$var wire 1 4 id_is_branch $end
+$var wire 32 7 id_rs1_data_reg [31:0] $end
+$var wire 32 8 id_rs2_data_reg [31:0] $end
+$var wire 5 @ ex_mem_rs1_addr [4:0] $end
+$var wire 5 A ex_mem_rs2_addr [4:0] $end
+$var wire 5 ? ex_mem_rd_addr [4:0] $end
+$var wire 1 E ex_mem_read $end
+$var wire 1 G ex_reg_write $end
+$var wire 32 I ex_alu_result [31:0] $end
+$var wire 5 K mem_wb_rd_addr [4:0] $end
+$var wire 1 O mem_reg_write $end
+$var wire 1 M mem_mem_read $end
+$var wire 32 I mem_fwd_data [31:0] $end
+$var wire 5 S wb_rd_addr [4:0] $end
+$var wire 1 U wb_reg_write $end
+$var wire 32 V wb_fwd_data [31:0] $end
+$var reg 2 e! fwd_a [1:0] $end
+$var reg 2 f! fwd_b [1:0] $end
+$var reg 32 g! rs1_data_fwd [31:0] $end
+$var reg 32 h! rs2_data_fwd [31:0] $end
+$var wire 1 ] stall_if $end
+$var wire 1 ^ stall_id $end
+$var wire 1 _ stall_ex $end
+$var wire 1 a flush_ex $end
+$var wire 1 i! load_use_stall $end
+$var wire 1 j! branch_stall $end
+$var wire 1 k! id_hazard_stall $end
+$upscope $end
+$scope module u_cache $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 1 e req $end
+$var wire 1 f wr_en $end
+$var wire 32 b addr [31:0] $end
+$var wire 32 c wdata [31:0] $end
+$var wire 32 d rdata [31:0] $end
+$var wire 1 g hit $end
+$var wire 6 l! index [5:0] $end
+$var wire 24 m! tag [23:0] $end
+$var wire 1 n! valid_match $end
+$var wire 1 o! tag_match $end
+$var wire 1 p! is_hit $end
+$var reg 2 q! state [1:0] $end
+$var reg 8 r! wait_cnt [7:0] $end
+$var integer 32 s! i [31:0] $end
+$upscope $end
+$scope module spi_ctrl $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 1 u wr_en $end
+$var wire 8 t! wr_data [7:0] $end
+$var wire 1 n full $end
+$var wire 1 o empty $end
+$var wire 1 u! cpol $end
+$var wire 1 v! cpha $end
+$var wire 1 . miso $end
+$var wire 1 ' sclk $end
+$var wire 1 & mosi $end
+$var wire 1 ( cs_n $end
+$var wire 8 r rx_data [7:0] $end
+$var wire 1 q rx_valid $end
+$var wire 1 p busy $end
+$var wire 1 w! fifo_empty $end
+$var wire 8 x! tx_data_int [7:0] $end
+$var wire 1 y! core_busy $end
+$var reg 1 z! fifo_rd_en $end
+$var reg 1 {! core_start $end
+$var wire 1 |! pop_ok $end
+$scope module tx_buffer $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 1 u wr_en $end
+$var wire 8 t! wr_data [7:0] $end
+$var wire 1 n full $end
+$var wire 1 }! rd_en $end
+$var reg 8 ~! rd_data [7:0] $end
+$var wire 1 w! empty $end
+$var reg 4 !" wr_ptr [3:0] $end
+$var reg 4 "" rd_ptr [3:0] $end
+$upscope $end
+$scope module spi_engine $end
+$var wire 1 + clk $end
+$var wire 1 , rst_n $end
+$var wire 8 x! tx_data [7:0] $end
+$var wire 1 #" start $end
+$var wire 1 u! cpol $end
+$var wire 1 v! cpha $end
+$var reg 8 $" rx_data [7:0] $end
+$var reg 1 %" busy $end
+$var reg 1 &" rx_valid $end
+$var wire 1 . miso $end
+$var reg 1 '" mosi $end
+$var reg 1 (" sclk $end
+$var reg 1 )" cs_n $end
+$var reg 2 *" state [1:0] $end
+$var reg 8 +" tx_shift [7:0] $end
+$var reg 8 ," rx_shift [7:0] $end
+$var reg 2 -" clk_cnt [1:0] $end
+$var reg 4 ." edge_cnt [3:0] $end
+$var wire 1 /" clk_tick $end
+$var wire 1 0" sample_edge $end
+$var wire 1 1" shift_edge $end
+$var wire 1 2" last_edge $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+b0 !!
+b0 !"
+0"
+b0 "!
+b0 ""
+b0 #
+1#!
+0#"
+bx $
+0$!
+b0 $"
+0%
+b0 %!
+0%"
+0&
+b0 &!
+0&"
+0'
+b0 '!
+0'"
+1(
+b100000000 (!
+0("
+b0 )
+b0 )!
+1)"
+b0 *
+b0 *!
+b0 *"
+0+
+b0 +!
+b0 +"
+0,
+b0 ,!
+b0 ,"
+bx -
+b0 -!
+b0 -"
+0.
+b0 .!
+b0 ."
+b0 /
+b0 /!
+0/"
+b10011 0
+b0 0!
+10"
+01
+01!
+01"
+b0 2
+02!
+02"
+b0 3
+03!
+04
+04!
+05
+b0 5!
+06
+b10011 6!
+b0 7
+b0 7!
+b0 8
+b0 8!
+b0 9
+b0 9!
+b0 :
+b0 :!
+b0 ;
+1;!
+b0 <
+0<!
+b0 =
+0=!
+b0 >
+1>!
+b0 ?
+b0 ?!
+b0 @
+b0 @!
+b0 A
+0A!
+b0 B
+0B!
+b0 C
+1C!
+0D
+0D!
+0E
+b0 E!
+0F
+b0 F!
+0G
+0G!
+b0 H
+1H!
+b0 I
+1I!
+b0 J
+b100000 J!
+b0 K
+b0 K!
+b0 L
+b0 L!
+0M
+b0 M!
+0N
+b0 N!
+0O
+0O!
+b0 P
+0P!
+b0 Q
+0Q!
+b0 R
+b0 R!
+b0 S
+b0 S!
+b0 T
+b0 T!
+0U
+b0 U!
+b0 V
+b0 V!
+b0 W
+b0 W!
+0X
+b0 X!
+b0 Y
+b0 Y!
+b0 Z
+b0 Z!
+b0 [
+b0 [!
+b0 \
+b0 \!
+0]
+b0 ]!
+0^
+0^!
+0_
+b0 _!
+0`
+0`!
+0a
+0a!
+b0 b
+0b!
+b0 c
+b0 c!
+b0 d
+b0 d!
+0e
+b0 e!
+0f
+b0 f!
+0g
+b0 g!
+b0 h
+b0 h!
+b0 i
+0i!
+b0 j
+0j!
+0k
+0k!
+0l
+b0 l!
+1m
+b0 m!
+0n
+0n!
+1o
+1o!
+0p
+0p!
+0q
+b0 q!
+b0 r
+b0 r!
+0s
+b1000000 s!
+0t
+b0 t!
+0u
+0u!
+b0 v
+0v!
+b10011 w
+1w!
+0x
+b0 x!
+b0 y
+0y!
+b100 z
+0z!
+b0 {
+0{!
+b0 |
+0|!
+0}
+0}!
+b1 ~
+b0 ~!
+$end
+
+#5000
+1!
+b100000000 (!
+1+
+b100000 J!
+b1000000 s!
+
+#10000
+0!
+0+
+
+#15000
+1!
+b100000000 (!
+1+
+b100000 J!
+b1000000 s!
+
+#20000
+0!
+1"
+0+
+1,
+
+#25000
+1!
+b100 #
+1+
+bx 0
+11!
+x4
+14!
+x5
+x6
+bx 6!
+bx 7
+bx 7!
+bx 8
+bx 8!
+bx 9
+bx 9!
+bx :
+0;!
+0>!
+xA!
+xB!
+xC!
+1D
+xD!
+bx E!
+bx F!
+1G
+xG!
+xH!
+xI!
+bx Y
+bx Z
+bx g!
+bx h!
+bx w
+b100 y
+b0xx00 z
+b1 {
+
+#30000
+0!
+0+
+
+#35000
+1!
+bx !!
+bx "!
+b0xx00 #
+x#!
+x$!
+bx %!
+b1 &!
+bx *!
+1+
+bx +!
+bx -!
+bx .!
+b100 /
+bx /!
+01!
+b100 2
+b100 3
+04!
+bx <
+bx =
+bx ?
+bx @
+bx A
+0D
+0G
+1O
+1Q!
+bx S!
+bx T!
+bx U!
+bx V!
+bx W!
+bx X!
+bx Y!
+b100 v
+b0xx00 y
+bx z
+b0xx {
+x}
+bx ~
+
+#40000
+0!
+0+
+
+#45000
+1!
+bx #
+b0xx &!
+b100 )!
+1+
+b0xx00 /
+x1
+bx 2
+b0xx00 3
+b100 ;
+bx I
+bx J
+bx K
+bx L!
+bx M!
+bx N!
+0O
+0Q!
+1U
+1X
+1^!
+bx b
+bx c
+bx c!
+bx d
+bx h
+bx i
+b0x000 j
+bx l!
+bx m!
+xn!
+xo!
+bx t!
+b0xx00 v
+xx
+bx y
+bx {
+bx |
+
+#50000
+0!
+0+
+
+#55000
+1!
+bx &!
+bx '!
+b0xx00 )!
+1+
+bx /
+bx 3
+b0xx00 ;
+b100 H
+b100 K!
+bx Q
+bx R
+bx S
+0U
+bx V
+bx W
+0X
+bx [!
+bx \!
+bx ]!
+0^!
+bx d!
+bx v
+
+#60000
+0!
+0+
+
+#65000
+1!
+bx )!
+1+
+bx ;
+b0xx00 H
+b0xx00 K!
+b100 P
+b100 Z!
+
+#70000
+0!
+0+
+
+#75000
+1!
+1+
+bx H
+bx K!
+b0xx00 P
+b0xx00 Z!
+
+#80000
+0!
+0+
+
+#85000
+1!
+1+
+bx P
+bx Z!
+
+#90000
+0!
+0+
+
+#95000
+1!
+1+
+
+#100000
+0!
+0+
+
+#105000
+1!
+1+
+
+#110000
+0!
+0+
+
+#115000
+1!
+1+
+
+#120000
+0!
+0+
+
+#125000
+1!
+1+
+
+#130000
+0!
+0+
+
+#135000
+1!
+1+
+
+#140000
+0!
+0+
+
+#145000
+1!
+1+
+
+#150000
+0!
+0+
+
+#155000
+1!
+1+
+
+#160000
+0!
+0+
+
+#165000
+1!
+1+
+
+#170000
+0!
+0+
+
+#175000
+1!
+1+
+
+#180000
+0!
+0+
+
+#185000
+1!
+1+
+
+#190000
+0!
+0+
+
+#195000
+1!
+1+
+
+#200000
+0!
+0+
+
+#205000
+1!
+1+
+
+#210000
+0!
+0+
+
+#215000
+1!
+1+
+
+#220000
+0!
+0+
+
+#225000
+1!
+1+
+
+#230000
+0!
+0+
+
+#235000
+1!
+1+
+
+#240000
+0!
+0+
+
+#245000
+1!
+1+
+
+#250000
+0!
+0+
+
+#255000
+1!
+1+
+
+#260000
+0!
+0+
+
+#265000
+1!
+1+
+
+#270000
+0!
+0+
+
+#275000
+1!
+1+
+
+#280000
+0!
+0+
+
+#285000
+1!
+1+
+
+#290000
+0!
+0+
+
+#295000
+1!
+1+
+
+#300000
+0!
+0+
+
+#305000
+1!
+1+
+
+#310000
+0!
+0+
+
+#315000
+1!
+1+
+
+#320000
+0!
+0+
+
+#325000
+1!
+1+
+
+#330000
+0!
+0+
+
+#335000
+1!
+1+
+
+#340000
+0!
+0+
+
+#345000
+1!
+1+
+
+#350000
+0!
+0+
+
+#355000
+1!
+1+
+
+#360000
+0!
+0+
+
+#365000
+1!
+1+
+
+#370000
+0!
+0+
+
+#375000
+1!
+1+
+
+#380000
+0!
+0+
+
+#385000
+1!
+1+
+
+#390000
+0!
+0+
+
+#395000
+1!
+1+
+
+#400000
+0!
+0+
+
+#405000
+1!
+1+
+
+#410000
+0!
+0+
+
+#415000
+1!
+1+
+
+#420000
+0!
+0+
+
+#425000
+1!
+1+
+
+#430000
+0!
+0+
+
+#435000
+1!
+1+
+
+#440000
+0!
+0+
+
+#445000
+1!
+1+
+
+#450000
+0!
+0+
+
+#455000
+1!
+1+
+
+#460000
+0!
+0+
+
+#465000
+1!
+1+
+
+#470000
+0!
+0+
+
+#475000
+1!
+1+
+
+#480000
+0!
+0+
+
+#485000
+1!
+1+
+
+#490000
+0!
+0+
+
+#495000
+1!
+1+

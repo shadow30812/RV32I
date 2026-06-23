@@ -1,0 +1,6 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module core
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/fifo.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top

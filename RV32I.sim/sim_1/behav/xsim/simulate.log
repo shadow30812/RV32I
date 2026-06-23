@@ -1,0 +1,6 @@
+Time resolution is 1 ps
+WARNING: File RV32I/imem.hex referenced on /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/top.v at line 39 cannot be opened for reading. Please ensure that this file is available in the current working directory or parent directory of xsim.dir location specified via -xsimdir switch.
+ERROR: Could not open VCD file RV32I/dump_risc.vcd for writing.
+Simulation Finished.
+$finish called at time : 500 ns : File "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sim_1/imports/RV32I/test_risc.v" Line 71
+INFO: xsimkernel Simulation Memory Usage: 281276 KB (Peak: 338548 KB), Simulation CPU Usage: 1480 ms
