@@ -15,10 +15,10 @@ slti x12, x1, 100
 // 2. Cache Miss/Hit FSM & Load-Use Hazard Interlocks
 addi x13, x0, 64        
 sw   x10, 0(x13)        
-lw   x14, 0(x13)        
+lw   x14, 0(x13)
+lw   x17, 0(x13)
 add  x15, x14, x0       
 addi x16, x14, 1        
-lw   x17, 0(x13)        
 
 // 3. Dynamic Branch Resolution
 beq  x1, x2, fail_beq   

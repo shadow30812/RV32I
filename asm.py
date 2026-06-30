@@ -131,7 +131,7 @@ def assemble(input_file, output_file):
                 binary = imm + rd + opcode
 
             # Convert 32-bit binary string to 8-character hex
-            hex_str = f"{int(binary, 2):08x}"
+            hex_str = f"{int(binary, 2):08X}"
             machine_code.append(hex_str)
 
         except Exception as e:

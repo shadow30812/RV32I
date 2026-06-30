@@ -301,7 +301,7 @@ module system (
   top #(
       .DATA_WIDTH(8),
       .ADDR_WIDTH(3),
-      .CLK_DIV(4)
+      .CLK_DIV   (4)
   ) spi_ctrl (
       .clk     (clk),
       .rst_n   (rst_n),
