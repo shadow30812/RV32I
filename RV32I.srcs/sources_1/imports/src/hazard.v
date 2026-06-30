@@ -99,7 +99,7 @@ module hazard (
 
   // Global Control Line Assignments
   assign stall_if = stall_mem || id_hazard_stall;
-  assign stall_id = stall_mem || id_hazard_stall;
+  assign stall_id = stall_mem;
   assign stall_ex = stall_mem;
   assign flush_ex = id_hazard_stall && !stall_mem;
 

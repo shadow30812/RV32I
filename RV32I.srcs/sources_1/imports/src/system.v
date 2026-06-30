@@ -92,7 +92,7 @@ module system (
       .clk                (clk),
       .rst_n              (rst_n),
       .stall              (stall_id),
-      .flush              (actual_mispredict),
+      .flush              (flush_ex),
       .if_id_pc           (if_id_pc),
       .if_id_inst         (if_id_inst),
       .if_id_pred_taken   (if_id_pred_taken),
@@ -138,7 +138,7 @@ module system (
       .clk              (clk),
       .rst_n            (rst_n),
       .stall            (stall_ex),
-      .flush            (flush_ex),
+      .flush            (1'b0),
       .id_ex_pc         (id_ex_pc),
       .id_ex_rs1_data   (id_ex_rs1_data),
       .id_ex_rs2_data   (id_ex_rs2_data),
@@ -301,7 +301,7 @@ module system (
   top #(
       .DATA_WIDTH(8),
       .ADDR_WIDTH(3),
-      .CLK_DIV(4)
+      .CLK_DIV   (4)
   ) spi_ctrl (
       .clk     (clk),
       .rst_n   (rst_n),

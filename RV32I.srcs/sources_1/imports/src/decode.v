@@ -197,9 +197,9 @@ module decode #(
 
   assign actual_branch_valid = is_branch || is_jal;
   assign actual_branch_taken = (is_branch && branch_condition_met) || is_jal;
-  assign actual_target       = if_id_pc + imm_val;
-  assign actual_pc           = if_id_pc;
-  assign actual_mispredict   = actual_branch_valid && (if_id_pred_taken != actual_branch_taken);
+  assign actual_target = if_id_pc + imm_val;
+  assign actual_pc = if_id_pc;
+  assign actual_mispredict    = actual_branch_valid && (if_id_pred_taken != actual_branch_taken) && !stall;
   // B-Type and JAL targets are PC-relative constants for RV32I
   // so correctness of direction and BTB tag guarantess correctness
 
@@ -220,7 +220,7 @@ module decode #(
       id_reg_write   <= 0;
       id_wb_sel      <= 0;
 
-    end else if (flush || actual_mispredict) begin
+    end else if (flush) begin
       // Insert NOP (Bubble) for flushing or misprediction
       id_ex_pc       <= 0;
       id_ex_rs1_data <= 0;

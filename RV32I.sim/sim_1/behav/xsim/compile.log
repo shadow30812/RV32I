@@ -1,6 +1,26 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/cache.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cache
 INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/core.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module core
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/decode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decode
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/execute.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module execute
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/fetch.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fetch
 INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/fifo.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module fifo
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/hazard.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module hazard
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/regfile.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module regfile
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/system.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module system
 INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/top.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module top
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/writeback.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module writeback
+INFO: [VRFC 10-2263] Analyzing Verilog file "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sim_1/imports/RV32I/test_risc.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_risc

@@ -163,19 +163,18 @@ module tb_risc;
     $display("-----------------------------------------------------");
     $display("  Performance Summary");
     $display("-----------------------------------------------------");
-    $display("  Total Cycles            : %0d", cycle_count);
-    $display("  Instructions Retired    : %0d", instr_count);
+    $display("  Total Cycles              : %0d", cycle_count);
+    $display("  Instructions Retired      : %0d", instr_count);
+
     if (cycle_count > 0)
-      $display(
-          "  IPC                     : %0d.%0d (x1000)",
-          (instr_count * 1000) / cycle_count,
-          ((instr_count * 1000) / cycle_count)
-      );
-    $display("  Branches Resolved       : %0d", branch_total);
-    $display("  Branch Mispredicts      : %0d", branch_mispredicts);
+      $display("  IPC                       : %0d (x1000)", (instr_count * 1000) / cycle_count);
+
+    $display("  Branches Resolved         : %0d", branch_total);
+    $display("  Branch Mispredicts        : %0d", branch_mispredicts);
+
     if (branch_total > 0)
       $display(
-          "  Branch Predictor Accuracy: %0d%%",
+          "  Branch Predictor Accuracy : %0d%%",
           ((branch_total - branch_mispredicts) * 100) / branch_total
       );
 
