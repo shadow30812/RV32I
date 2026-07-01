@@ -1,0 +1,380 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Thu Jul  2 00:20:11 2026
+| Host         : Swastik-Yoga-Slim-6-14IRH8 running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_methodology -file system_methodology_drc_routed.rpt -pb system_methodology_drc_routed.pb -rpx system_methodology_drc_routed.rpx
+| Design       : system
+| Device       : xc7k70tfbv676-1
+| Speed File   : -1
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 69
++-----------+----------+-------------------------------+--------+
+| Rule      | Severity | Description                   | Checks |
++-----------+----------+-------------------------------+--------+
+| TIMING-18 | Warning  | Missing input or output delay | 69     |
++-----------+----------+-------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[0] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[10] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[11] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[12] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#5 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[13] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#6 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[14] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#7 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[15] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#8 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[16] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#9 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[17] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#10 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[18] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#11 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[19] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#12 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[1] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#13 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[20] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#14 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[21] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#15 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[22] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#16 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[23] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#17 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[24] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#18 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[25] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#19 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[26] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#20 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[27] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#21 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[28] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#22 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[29] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#23 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[2] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#24 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[30] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#25 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[31] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#26 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[3] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#27 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[4] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#28 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[5] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#29 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[6] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#30 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[7] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#31 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[8] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#32 Warning
+Missing input or output delay  
+An input delay is missing on imem_data[9] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#33 Warning
+Missing input or output delay  
+An input delay is missing on rst_n relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#34 Warning
+Missing input or output delay  
+An input delay is missing on spi_miso relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#35 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[0] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#36 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[10] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#37 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[11] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#38 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[12] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#39 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[13] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#40 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[14] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#41 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[15] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#42 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[16] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#43 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[17] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#44 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[18] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#45 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[19] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#46 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[1] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#47 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[20] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#48 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[21] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#49 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[22] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#50 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[23] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#51 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[24] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#52 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[25] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#53 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[26] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#54 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[27] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#55 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[28] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#56 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[29] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#57 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[2] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#58 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[30] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#59 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[31] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#60 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[3] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#61 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[4] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#62 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[5] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#63 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[6] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#64 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[7] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#65 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[8] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#66 Warning
+Missing input or output delay  
+An output delay is missing on imem_addr[9] relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#67 Warning
+Missing input or output delay  
+An output delay is missing on spi_cs_n relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#68 Warning
+Missing input or output delay  
+An output delay is missing on spi_mosi relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+TIMING-18#69 Warning
+Missing input or output delay  
+An output delay is missing on spi_sclk relative to the rising and/or falling clock edge(s) of sys_clk.
+Related violations: <none>
+
+

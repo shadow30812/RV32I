@@ -1,0 +1,771 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Thu Jul  2 00:19:23 2026
+| Host         : Swastik-Yoga-Slim-6-14IRH8 running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_control_sets -verbose -file system_control_sets_placed.rpt
+| Design       : system
+| Device       : xc7k70t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |   693 |
+|    Minimum number of control sets                        |   693 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |  1834 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |   693 |
+| >= 0 to < 4        |     2 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |    12 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     0 |
+| >= 16              |   676 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               0 |            0 |
+| No           | No                    | Yes                    |              79 |           23 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              64 |           19 |
+| Yes          | No                    | Yes                    |           19871 |         7477 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+------------------------------------------------+------------------+------------------+----------------+--------------+
+|  Clock Signal  |                  Enable Signal                 | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+------------------------------------------------+------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | spi_ctrl/spi_engine/cs_n_i_1_n_0               | u_fetch/rst_n    |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | spi_ctrl/spi_engine/mosi_i_1_n_0               | u_fetch/rst_n    |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[31]_4[0]       | u_fetch/rst_n    |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | spi_ctrl/spi_engine/edge_cnt[3]_i_1_n_0        | u_fetch/rst_n    |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | spi_ctrl/tx_buffer/mem[5][7]_i_1_n_0           |                  |                1 |              8 |         8.00 |
+|  clk_IBUF_BUFG | spi_ctrl/tx_buffer/mem[4][7]_i_1_n_0           |                  |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | spi_ctrl/tx_buffer/mem[2][7]_i_1_n_0           |                  |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | spi_ctrl/tx_buffer/mem[1][7]_i_1_n_0           |                  |                1 |              8 |         8.00 |
+|  clk_IBUF_BUFG | spi_ctrl/tx_buffer/mem[3][7]_i_1_n_0           |                  |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | spi_ctrl/tx_buffer/mem[0][7]_i_1_n_0           |                  |                3 |              8 |         2.67 |
+|  clk_IBUF_BUFG | spi_ctrl/spi_engine/rx_shift_0[0]              | u_fetch/rst_n    |                1 |              8 |         8.00 |
+|  clk_IBUF_BUFG | spi_ctrl/spi_engine/tx_shift[7]_i_1_n_0        | u_fetch/rst_n    |                3 |              8 |         2.67 |
+|  clk_IBUF_BUFG | spi_ctrl/spi_engine/rx_data[7]_i_1_n_0         | u_fetch/rst_n    |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | spi_ctrl/tx_buffer/mem[6][7]_i_1_n_0           |                  |                4 |              8 |         2.00 |
+|  clk_IBUF_BUFG | spi_ctrl/tx_buffer/mem[7][7]_i_1_n_0           |                  |                4 |              8 |         2.00 |
+|  clk_IBUF_BUFG | u_cache/wait_cnt[7]_i_1_n_0                    | u_fetch/rst_n    |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | spi_ctrl/tx_buffer/rd_ptr0                     | u_fetch/rst_n    |                6 |             12 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[232][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[221][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[222][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[223][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[224][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[225][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[226][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[227][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[228][21]_i_1_n_0             | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[229][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[22][21]_i_1_n_0              | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[230][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[231][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[220][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[233][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[234][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[235][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[236][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[237][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[238][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[239][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[23][21]_i_1_n_0              | u_fetch/rst_n    |               18 |             22 |         1.22 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[240][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[241][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[242][21]_i_1_n_0             | u_fetch/rst_n    |               15 |             22 |         1.47 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[210][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[200][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[201][21]_i_1_n_0             | u_fetch/rst_n    |               14 |             22 |         1.57 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[202][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[203][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[204][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[205][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[206][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[207][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[208][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[209][21]_i_1_n_0             | u_fetch/rst_n    |                6 |             22 |         3.67 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[20][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[243][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[211][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[212][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[213][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[214][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[215][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[56][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[216][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[217][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[218][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[219][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[21][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[33][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[254][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[255][21]_i_1_n_0             | u_fetch/rst_n    |               15 |             22 |         1.47 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[25][21]_i_1_n_0              | u_fetch/rst_n    |               15 |             22 |         1.47 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[26][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[27][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[28][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[29][21]_i_1_n_0              | u_fetch/rst_n    |               14 |             22 |         1.57 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[2][21]_i_1_n_0               | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[30][21]_i_1_n_0              | u_fetch/rst_n    |               14 |             22 |         1.57 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[31][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[32][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[253][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[34][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[35][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[36][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[37][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[38][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[39][21]_i_1_n_0              | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[3][21]_i_1_n_0               | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[40][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[41][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[42][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[43][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[46][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[109][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[55][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[54][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[53][21]_i_1_n_0              | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[52][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[51][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[50][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[4][21]_i_1_n_0               | u_fetch/rst_n    |               15 |             22 |         1.47 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[49][21]_i_1_n_0              | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[48][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[47][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[44][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[45][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[244][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[245][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[246][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[247][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[248][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[249][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[24][21]_i_1_n_0              | u_fetch/rst_n    |               14 |             22 |         1.57 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[250][21]_i_1_n_0             | u_fetch/rst_n    |               14 |             22 |         1.57 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[251][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[252][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[138][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[126][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[127][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[128][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[129][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[12][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[130][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[131][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[132][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[133][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[134][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[135][21]_i_1_n_0             | u_fetch/rst_n    |               14 |             22 |         1.57 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[136][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[137][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[125][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[139][21]_i_1_n_0             | u_fetch/rst_n    |               15 |             22 |         1.47 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[13][21]_i_1_n_0              | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[140][21]_i_1_n_0             | u_fetch/rst_n    |               14 |             22 |         1.57 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[141][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[142][21]_i_1_n_0             | u_fetch/rst_n    |               14 |             22 |         1.57 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[143][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[144][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[145][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[146][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[147][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[148][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[149][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[14][21]_i_1_n_0              | u_fetch/rst_n    |               15 |             22 |         1.47 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[112][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[108][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[107][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[106][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[105][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[104][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[103][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[102][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[101][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[100][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[0][21]_i_1_n_0               | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[10][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[110][21]_i_1_n_0             | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[111][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[150][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[113][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[114][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[115][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[116][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[117][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[118][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[119][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[11][21]_i_1_n_0              | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[120][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[121][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[122][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[123][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[124][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[188][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[176][21]_i_1_n_0             | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[177][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[178][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[179][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[17][21]_i_1_n_0              | u_fetch/rst_n    |               16 |             22 |         1.38 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[180][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[181][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[182][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[183][21]_i_1_n_0             | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[184][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[185][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[186][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[187][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[175][21]_i_1_n_0             | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[189][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[18][21]_i_1_n_0              | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[190][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[191][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[192][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[193][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[194][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[195][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[196][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[197][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[198][21]_i_1_n_0             | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[199][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[19][21]_i_1_n_0              | u_fetch/rst_n    |               17 |             22 |         1.29 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[163][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[151][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[152][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[153][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[154][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[155][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[156][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[157][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[158][21]_i_1_n_0             | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[159][21]_i_1_n_0             | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[15][21]_i_1_n_0              | u_fetch/rst_n    |               14 |             22 |         1.57 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[160][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[161][21]_i_1_n_0             | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[162][21]_i_1_n_0             | u_fetch/rst_n    |                6 |             22 |         3.67 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[1][21]_i_1_n_0               | u_fetch/rst_n    |               15 |             22 |         1.47 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[164][21]_i_1_n_0             | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[165][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[166][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[167][21]_i_1_n_0             | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[168][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[169][21]_i_1_n_0             | u_fetch/rst_n    |                6 |             22 |         3.67 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[16][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[170][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[171][21]_i_1_n_0             | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[172][21]_i_1_n_0             | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[173][21]_i_1_n_0             | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[174][21]_i_1_n_0             | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[90][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[7][21]_i_1_n_0               | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[80][21]_i_1_n_0              | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[81][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[82][21]_i_1_n_0              | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[83][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[84][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[85][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[86][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[87][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[88][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[89][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[8][21]_i_1_n_0               | u_fetch/rst_n    |               15 |             22 |         1.47 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[58][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[91][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[92][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[93][21]_i_1_n_0              | u_fetch/rst_n    |               13 |             22 |         1.69 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[94][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[95][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[96][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[97][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[98][21]_i_1_n_0              | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[99][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[9][21]_i_1_n_0               | u_fetch/rst_n    |               15 |             22 |         1.47 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[57][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[78][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[79][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[59][21]_i_1_n_0              | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[5][21]_i_1_n_0               | u_fetch/rst_n    |               16 |             22 |         1.38 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[60][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[61][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[62][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[63][21]_i_1_n_0              | u_fetch/rst_n    |                7 |             22 |         3.14 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[64][21]_i_1_n_0              | u_fetch/rst_n    |                8 |             22 |         2.75 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[65][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[66][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[67][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[69][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[68][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[77][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[76][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[75][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[74][21]_i_1_n_0              | u_fetch/rst_n    |               11 |             22 |         2.00 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[73][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[72][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[71][21]_i_1_n_0              | u_fetch/rst_n    |                9 |             22 |         2.44 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[70][21]_i_1_n_0              | u_fetch/rst_n    |               10 |             22 |         2.20 |
+|  clk_IBUF_BUFG | u_fetch/tag_table[6][21]_i_1_n_0               | u_fetch/rst_n    |               12 |             22 |         1.83 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_8[0]        | u_fetch/rst_n    |               12 |             24 |         2.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_7[0]        | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_6[0]        | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_5[0]        | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_4[0]        | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_3[0]        | u_fetch/rst_n    |               12 |             24 |         2.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_23[0]       | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_22[0]       | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_21[0]       | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_20[0]       | u_fetch/rst_n    |                7 |             24 |         3.43 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_2[0]        | u_fetch/rst_n    |               11 |             24 |         2.18 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_19[0]       | u_fetch/rst_n    |                5 |             24 |         4.80 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_18[0]       | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_17[0]       | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_16[0]       | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_15[0]       | u_fetch/rst_n    |               11 |             24 |         2.18 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_9[0]        | u_fetch/rst_n    |               11 |             24 |         2.18 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_0[0]        | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_1[0]        | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_10[0]       | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_11[0]       | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_12[0]       | u_fetch/rst_n    |               11 |             24 |         2.18 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_13[0]       | u_fetch/rst_n    |                7 |             24 |         3.43 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_9[0]        | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_2[0]        | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_3[0]        | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_4[0]        | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_5[0]        | u_fetch/rst_n    |                5 |             24 |         4.80 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_6[0]        | u_fetch/rst_n    |               13 |             24 |         1.85 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_7[0]        | u_fetch/rst_n    |                7 |             24 |         3.43 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_8[0]        | u_fetch/rst_n    |                7 |             24 |         3.43 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[7]_9[0]        | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_10[0]       | u_fetch/rst_n    |                7 |             24 |         3.43 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_8[0]        | u_fetch/rst_n    |               11 |             24 |         2.18 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_7[0]        | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_6[0]        | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_5[0]        | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_4[0]        | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_3[0]        | u_fetch/rst_n    |               12 |             24 |         2.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_2[0]        | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_11[0]       | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_13[0]       | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_1[0]        | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[3]_0[0]        | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[2]_rep__3_3[0] | u_fetch/rst_n    |                7 |             24 |         3.43 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[2]_rep__3_2[0] | u_fetch/rst_n    |               12 |             24 |         2.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[2]_rep__3_1[0] | u_fetch/rst_n    |                8 |             24 |         3.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[2]_rep__3_0[0] | u_fetch/rst_n    |               13 |             24 |         1.85 |
+|  clk_IBUF_BUFG | u_execute/E[0]                                 | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[4]_rep__1_1[0] | u_fetch/rst_n    |               13 |             24 |         1.85 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_14[0]       | u_fetch/rst_n    |               11 |             24 |         2.18 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_12[0]       | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_11[0]       | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_10[0]       | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_1[0]        | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[6]_0[0]        | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[5]_rep__1_3[0] | u_fetch/rst_n    |               10 |             24 |         2.40 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[5]_rep__1_1[0] | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[4]_rep__1_6[0] | u_fetch/rst_n    |               11 |             24 |         2.18 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[4]_rep__1_5[0] | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[4]_rep__1_4[0] | u_fetch/rst_n    |               13 |             24 |         1.85 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[4]_rep__1_3[0] | u_fetch/rst_n    |                6 |             24 |         4.00 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[4]_rep__1_2[0] | u_fetch/rst_n    |                7 |             24 |         3.43 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_alu_result_reg[5]_rep__1_2[0] | u_fetch/rst_n    |                9 |             24 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[22][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_cache/data_array[21][31]_i_1_n_0             | u_fetch/rst_n    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | u_cache/data_array[20][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[1][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[19][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_cache/data_array[18][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_cache/data_array[17][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_cache/data_array[16][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_cache/data_array[15][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | u_cache/data_array[14][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[13][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[12][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_cache/data_array[11][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[10][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | u_cache/data_array[0][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[44][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_1[0]                | u_fetch/rst_n    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_18[0]               | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_17[0]               | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_16[0]               | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_15[0]               | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_14[0]               | u_fetch/rst_n    |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_13[0]               | u_fetch/rst_n    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_12[0]               | u_fetch/rst_n    |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_11[0]               | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_10[0]               | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_19[0]               | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_0[0]                | u_fetch/rst_n    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_cache/data_array[9][31]_i_1_n_0              | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_cache/data_array[8][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[7][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | u_cache/data_array[6][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_cache/data_array[63][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[62][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | u_cache/data_array[61][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_cache/data_array[60][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_28[0]               | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_9[0]                | u_fetch/rst_n    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_8[0]                | u_fetch/rst_n    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_7[0]                | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_6[0]                | u_fetch/rst_n    |               16 |             32 |         2.00 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_5[0]                | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_4[0]                | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_30[0]               | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_3[0]                | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_29[0]               | u_fetch/rst_n    |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | u_cache/data_array[24][31]_i_1_n_0             | u_fetch/rst_n    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_27[0]               | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_26[0]               | u_fetch/rst_n    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_25[0]               | u_fetch/rst_n    |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_24[0]               | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_23[0]               | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_22[0]               | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_21[0]               | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_20[0]               | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_memory/mem_reg_write_reg_2[0]                | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_cache/data_array[32][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_cache/data_array[40][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_cache/data_array[3][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_cache/data_array[39][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[38][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_cache/data_array[37][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[36][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_cache/data_array[35][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_cache/data_array[34][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_cache/data_array[33][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_cache/data_array[59][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[31][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_cache/data_array[30][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_cache/data_array[2][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | u_cache/data_array[29][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_cache/data_array[28][31]_i_1_n_0             | u_fetch/rst_n    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | u_cache/data_array[27][31]_i_1_n_0             | u_fetch/rst_n    |                7 |             32 |         4.57 |
+|  clk_IBUF_BUFG | u_cache/data_array[26][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[25][31]_i_1_n_0             | u_fetch/rst_n    |                6 |             32 |         5.33 |
+|  clk_IBUF_BUFG | u_cache/data_array[23][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_cache/data_array[42][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             32 |         4.00 |
+|  clk_IBUF_BUFG | u_cache/data_array[5][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | u_cache/data_array[58][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[57][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[56][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             32 |         3.20 |
+|  clk_IBUF_BUFG | u_cache/data_array[55][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             32 |         2.13 |
+|  clk_IBUF_BUFG | u_cache/data_array[54][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             32 |         2.29 |
+|  clk_IBUF_BUFG | u_cache/data_array[53][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[52][31]_i_1_n_0             | u_fetch/rst_n    |               16 |             32 |         2.00 |
+|  clk_IBUF_BUFG | u_cache/data_array[51][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[50][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[4][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[49][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             32 |         2.46 |
+|  clk_IBUF_BUFG | u_cache/data_array[48][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | u_cache/data_array[47][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_cache/data_array[46][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_cache/data_array[45][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             32 |         2.91 |
+|  clk_IBUF_BUFG | u_cache/data_array[43][31]_i_1_n_0             | u_fetch/rst_n    |                6 |             32 |         5.33 |
+|  clk_IBUF_BUFG | u_cache/data_array[41][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[33][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[180][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[173][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[174][31]_i_1_n_0             | u_fetch/rst_n    |                7 |             35 |         5.00 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[175][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[176][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[177][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[178][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[179][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[17][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[172][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[181][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[182][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[183][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[184][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[185][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[186][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[187][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[188][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[171][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[170][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[16][31]_i_1_n_0              | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[169][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[168][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[167][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[166][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[165][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[164][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[163][31]_i_1_n_0             | u_fetch/rst_n    |                7 |             35 |         5.00 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[162][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[161][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[160][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[15][31]_i_1_n_0              | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[159][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[201][31]_i_1_n_0             | u_fetch/rst_n    |                6 |             35 |         5.83 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[215][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[214][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[213][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[212][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[211][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[210][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[20][31]_i_1_n_0              | u_fetch/rst_n    |               17 |             35 |         2.06 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[209][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[208][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[207][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[206][31]_i_1_n_0             | u_fetch/rst_n    |                6 |             35 |         5.83 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[205][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[204][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[203][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[202][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[158][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[200][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[1][31]_i_1_n_0               | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[19][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[199][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[198][31]_i_1_n_0             | u_fetch/rst_n    |                6 |             35 |         5.83 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[197][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[196][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[195][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[194][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[193][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[192][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[191][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[190][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[18][31]_i_1_n_0              | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[189][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[114][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[128][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[127][31]_i_1_n_0             | u_fetch/rst_n    |               17 |             35 |         2.06 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[126][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[125][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[124][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[123][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[122][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[121][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[120][31]_i_1_n_0             | u_fetch/rst_n    |               17 |             35 |         2.06 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[11][31]_i_1_n_0              | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[119][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[118][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[117][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[116][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[115][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[129][31]_i_1_n_0             | u_fetch/rst_n    |               17 |             35 |         2.06 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[113][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[112][31]_i_1_n_0             | u_fetch/rst_n    |               17 |             35 |         2.06 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[111][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[110][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[10][31]_i_1_n_0              | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[109][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[108][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[107][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[106][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[105][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[104][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[103][31]_i_1_n_0             | u_fetch/rst_n    |               16 |             35 |         2.19 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[102][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[101][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[100][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[143][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[157][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[156][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[155][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[154][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[153][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[152][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[151][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[150][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[14][31]_i_1_n_0              | u_fetch/rst_n    |                7 |             35 |         5.00 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[149][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[148][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[147][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[146][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[145][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[144][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[216][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[142][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[141][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[140][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[13][31]_i_1_n_0              | u_fetch/rst_n    |                7 |             35 |         5.00 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[139][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[138][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[137][31]_i_1_n_0             | u_fetch/rst_n    |               18 |             35 |         1.94 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[136][31]_i_1_n_0             | u_fetch/rst_n    |               17 |             35 |         2.06 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[135][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[134][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[133][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[132][31]_i_1_n_0             | u_fetch/rst_n    |               16 |             35 |         2.19 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[131][31]_i_1_n_0             | u_fetch/rst_n    |               16 |             35 |         2.19 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[130][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[12][31]_i_1_n_0              | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[58][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[71][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[70][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[6][31]_i_1_n_0               | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[69][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[68][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[67][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[66][31]_i_1_n_0              | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[65][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[64][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[63][31]_i_1_n_0              | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[62][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[61][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[60][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[5][31]_i_1_n_0               | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[59][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[72][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[57][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[56][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[55][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[54][31]_i_1_n_0              | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[53][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[52][31]_i_1_n_0              | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[51][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[50][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[4][31]_i_1_n_0               | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[49][31]_i_1_n_0              | u_fetch/rst_n    |               16 |             35 |         2.19 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[48][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[47][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[46][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[45][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[44][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[87][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[0][31]_i_1_n_0               | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[9][31]_i_1_n_0               | u_fetch/rst_n    |                7 |             35 |         5.00 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[99][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[98][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[97][31]_i_1_n_0              | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[96][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[95][31]_i_1_n_0              | u_fetch/rst_n    |               18 |             35 |         1.94 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[94][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[93][31]_i_1_n_0              | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[92][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[91][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[90][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[8][31]_i_1_n_0               | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[89][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[88][31]_i_1_n_0              | u_fetch/rst_n    |               16 |             35 |         2.19 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[43][31]_i_1_n_0              | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[86][31]_i_1_n_0              | u_fetch/rst_n    |               16 |             35 |         2.19 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[85][31]_i_1_n_0              | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[84][31]_i_1_n_0              | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[83][31]_i_1_n_0              | u_fetch/rst_n    |               17 |             35 |         2.06 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[82][31]_i_1_n_0              | u_fetch/rst_n    |               16 |             35 |         2.19 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[81][31]_i_1_n_0              | u_fetch/rst_n    |               18 |             35 |         1.94 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[80][31]_i_1_n_0              | u_fetch/rst_n    |               18 |             35 |         1.94 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[7][31]_i_1_n_0               | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[79][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[78][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[77][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[76][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[75][31]_i_1_n_0              | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[74][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[73][31]_i_1_n_0              | u_fetch/rst_n    |               16 |             35 |         2.19 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[230][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[244][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[243][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[242][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[241][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[240][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[23][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[239][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[238][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[237][31]_i_1_n_0             | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[236][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[235][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[234][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[233][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[232][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[231][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[245][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[22][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[229][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[228][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[227][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[226][31]_i_1_n_0             | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[225][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[224][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[223][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[222][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[221][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[220][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[21][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[219][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[218][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[217][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[29][31]_i_1_n_0              | u_fetch/rst_n    |                8 |             35 |         4.38 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[42][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[41][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[40][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[3][31]_i_1_n_0               | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[39][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[38][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[37][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[36][31]_i_1_n_0              | u_fetch/rst_n    |               13 |             35 |         2.69 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[35][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[34][31]_i_1_n_0              | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[32][31]_i_1_n_0              | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[31][31]_i_1_n_0              | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[30][31]_i_1_n_0              | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[2][31]_i_1_n_0               | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[253][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[246][31]_i_1_n_0             | u_fetch/rst_n    |               15 |             35 |         2.33 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[247][31]_i_1_n_0             | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[248][31]_i_1_n_0             | u_fetch/rst_n    |               11 |             35 |         3.18 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[249][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[24][31]_i_1_n_0              | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[250][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[251][31]_i_1_n_0             | u_fetch/rst_n    |               14 |             35 |         2.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[252][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[28][31]_i_1_n_0              | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[254][31]_i_1_n_0             | u_fetch/rst_n    |               12 |             35 |         2.92 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[255][31]_i_1_n_0             | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[25][31]_i_1_n_0              | u_fetch/rst_n    |               10 |             35 |         3.50 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[26][31]_i_1_n_0              | u_fetch/rst_n    |               16 |             35 |         2.19 |
+|  clk_IBUF_BUFG | u_fetch/btb_table[27][31]_i_1_n_0              | u_fetch/rst_n    |                9 |             35 |         3.89 |
+|  clk_IBUF_BUFG |                                                | u_fetch/rst_n    |               23 |             79 |         3.43 |
+|  clk_IBUF_BUFG | u_fetch/if_id_pc[31]_i_1_n_0                   | u_fetch/rst_n    |               38 |            105 |         2.76 |
+|  clk_IBUF_BUFG | u_execute/ex_mem_write_reg_1                   | u_fetch/rst_n    |               29 |            151 |         5.21 |
+|  clk_IBUF_BUFG | u_fetch/pc_reg[31]_i_1_n_0                     | u_fetch/rst_n    |               42 |            161 |         3.83 |
+|  clk_IBUF_BUFG | u_execute/p_0_in                               | u_fetch/rst_n    |               54 |            232 |         4.30 |
++----------------+------------------------------------------------+------------------+------------------+----------------+--------------+
+
+
