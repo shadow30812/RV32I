@@ -5,7 +5,7 @@
 module cache #(
     parameter PC_WIDTH        = 32,
     parameter CACHE_ADDR_BITS = 6,   // 64 entries (2^6)
-    parameter MEM_LATENCY     = 1    // Simulated clock cycles delay
+    parameter MEM_LATENCY     = 4    // Simulated clock cycles delay
                                      // to fetch data from Main Memory
 ) (
     // Control Signals
