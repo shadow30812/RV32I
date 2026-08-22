@@ -8,16 +8,22 @@ module system (
     input wire clk,
     input wire rst_n,
 
-    // Instruction Menory
-    output wire [31:0] imem_addr,
-    input  wire [31:0] imem_data,
-
     // External SPI Bus
     input  wire spi_miso,
     output wire spi_mosi,
     output wire spi_sclk,
     output wire spi_cs_n
 );
+  // Main Memory and Cache Interconnect Wires
+  wire [31:0] imem_addr, imem_data;
+  wire icache_hit, stall_icache;
+  wire icache_mem_req, icache_mem_ready;
+  wire [ 9:0] icache_mem_addr;
+  wire [31:0] icache_mem_rdata;
+
+  wire dcache_mem_req, dcache_mem_wr_en, dcache_mem_ready;
+  wire [9:0] dcache_mem_addr;
+  wire [31:0] dcache_mem_wdata, dcache_mem_rdata;
 
   // Pipeline Interconnect Wires
   // IF/ID Pipeline Wires (Fetch -> Decode)
@@ -67,8 +73,29 @@ module system (
   wire [31:0] mmio_addr, mmio_wdata, mmio_rdata;
   wire mmio_req, mmio_wr_en, mmio_ready;
 
+  assign stall_icache = !icache_hit;
+
+  (* DONT_TOUCH = "yes" *)
+  // Physical Main Memory (Dual-Port BRAM)
+  ram #(
+      .ADDR_WIDTH(10),
+      .DATA_WIDTH(32)
+  ) u_ram (
+      .clk   (clk),
+      .ena   (icache_mem_req),
+      .addra (icache_mem_addr),
+      .douta (icache_mem_rdata),
+      .readya(icache_mem_ready),
+      .enb   (dcache_mem_req),
+      .web   (dcache_mem_wr_en),
+      .addrb (dcache_mem_addr),
+      .dinb  (dcache_mem_wdata),
+      .doutb (dcache_mem_rdata),
+      .readyb(dcache_mem_ready)
+  );
 
   // Pipeline Stage Instantiations
+  (* DONT_TOUCH = "yes" *)
   // 1. Fetch Stage
   fetch u_fetch (
       .clk                (clk),
@@ -214,6 +241,7 @@ module system (
   hazard u_hazard (
       // Hazard itself
       .stall_mem(stall_mem),
+      .stall_icache(stall_icache),
 
       // ID Stage Inputs
       .id_ex_rs1_addr (rs1_addr),
@@ -252,16 +280,36 @@ module system (
       .flush_ex    (flush_ex)
   );
 
-  // 8. L1 Data Cache
-  cache u_cache (
-      .clk  (clk),
-      .rst_n(rst_n),
-      .req  (cache_req),
-      .wr_en(cache_wr_en),
-      .addr (cache_addr),
-      .wdata(cache_wdata),
-      .rdata(cache_rdata),
-      .hit  (cache_hit)
+  // 8a. L1 I-Cache
+  icache u_icache (
+      .clk      (clk),
+      .rst_n    (rst_n),
+      .req      (1'b1),
+      .addr     (imem_addr),
+      .rdata    (imem_data),
+      .hit      (icache_hit),
+      .mem_req  (icache_mem_req),
+      .mem_addr (icache_mem_addr),
+      .mem_rdata(icache_mem_rdata),
+      .mem_ready(icache_mem_ready)
+  );
+
+  // 8b. L1 Data Cache
+  dcache u_dcache (
+      .clk      (clk),
+      .rst_n    (rst_n),
+      .req      (cache_req),
+      .wr_en    (cache_wr_en),
+      .addr     (cache_addr),
+      .wdata    (cache_wdata),
+      .rdata    (cache_rdata),
+      .hit      (cache_hit),
+      .mem_req  (dcache_mem_req),
+      .mem_wr_en(dcache_mem_wr_en),
+      .mem_addr (dcache_mem_addr),
+      .mem_wdata(dcache_mem_wdata),
+      .mem_rdata(dcache_mem_rdata),
+      .mem_ready(dcache_mem_ready)
   );
 
   // 9. MMIO to SPI Master Bridge

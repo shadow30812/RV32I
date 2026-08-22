@@ -22,10 +22,15 @@ module regfile (
 );
 
   // Register Array
-  reg [31:0] registers[0:31];
-  integer i;
+  // Infer distributed RAM (16 RAM32M-LUTs) instead of 1024 FFs
+  (* ram_style = "distributed" *) reg [31:0] registers[0:31];
 
-  localparam x0 = 5'b00000;
+  integer i;
+  initial begin
+    for (i = 0; i < 32; i = i + 1) registers[i] = 32'h0;
+  end
+
+  localparam x0   = 5'b00000;
   localparam zer0 = 32'h0000_0000;
 
   // Read Logic
@@ -40,9 +45,8 @@ module regfile (
 
   // Write Logic
   // x0 cannot be modified
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) for (i = 0; i < 32; i = i + 1) registers[i] <= zer0;
-    else if (reg_write && (rd_addr != x0)) registers[rd_addr] <= rd_data;
+  always @(posedge clk) begin
+    if (reg_write && (rd_addr != x0)) registers[rd_addr] <= rd_data;
   end
 
 endmodule

@@ -2,37 +2,22 @@
 
 module tb_risc;
 
-  reg clk;
-  reg rst_n;
+  reg  clk;
+  reg  rst_n;
 
-  wire [31:0] imem_addr;
-  reg [31:0] imem_data;
-
-  reg spi_miso;
+  reg  spi_miso;
   wire spi_mosi;
   wire spi_sclk;
   wire spi_cs_n;
 
   system u_system (
-      .clk      (clk),
-      .rst_n    (rst_n),
-      .imem_addr(imem_addr),
-      .imem_data(imem_data),
-      .spi_miso (spi_miso),
-      .spi_mosi (spi_mosi),
-      .spi_sclk (spi_sclk),
-      .spi_cs_n (spi_cs_n)
+      .clk     (clk),
+      .rst_n   (rst_n),
+      .spi_miso(spi_miso),
+      .spi_mosi(spi_mosi),
+      .spi_sclk(spi_sclk),
+      .spi_cs_n(spi_cs_n)
   );
-
-  reg [31:0] imem[0:255];
-
-  initial begin
-    $readmemh("RV32I/imem.hex", imem);
-  end
-
-  always @(*) begin
-    imem_data = imem[imem_addr>>2];
-  end
 
   initial begin
     clk = 0;
@@ -49,7 +34,7 @@ module tb_risc;
     $dumpfile("RV32I/dump_risc.vcd");
     $dumpvars(0, tb_risc);
 
-    #20000;
+    #50000;
     $display("[FATAL] Simulation Timeout. Check for infinite loops or stalled FSMs.");
     $finish;
   end
@@ -64,37 +49,37 @@ module tb_risc;
       expected[k] = 32'h0;
       checked[k]  = 1'b0;
     end
-    expected[1] = 32'd5;
-    expected[2] = 32'd10;
-    expected[3] = 32'd15;
-    expected[4] = 32'd5;
-    expected[5] = 32'd0;
-    expected[6] = 32'd15;
-    expected[7] = 32'd15;
-    expected[8] = 32'd1;
-    expected[9] = 32'd15;
-    expected[10] = 32'h123;
-    expected[11] = 32'h122;
-    expected[12] = 32'd1;
-    expected[13] = 32'h40;
-    expected[14] = 32'h123;
-    expected[15] = 32'h123;
-    expected[16] = 32'h124;
-    expected[17] = 32'h123;
-    expected[18] = 32'd7;
-    expected[19] = 32'd0;
-    expected[20] = 32'd1;
-    expected[21] = 32'd2;
-    expected[22] = 32'd0;
-    expected[23] = 32'd9;
-    expected[24] = 32'd4;
-    expected[25] = 32'd0;
-    expected[26] = 32'd5;
-    expected[27] = 32'd6;
-    expected[28] = 32'd0;
-    expected[29] = 32'd152;
-    expected[30] = 32'd9;
-    expected[31] = 32'hABCDE01E;
+    expected[1] = 32'h0000000F;  // 15
+    expected[2] = 32'h00000019;  // 25
+    expected[3] = 32'h00000028;  // 40
+    expected[4] = 32'h0000000A;  // 10
+    expected[5] = 32'h00000016;  // 22
+    expected[6] = 32'h00000009;  // 9
+    expected[7] = 32'h0000001F;  // 31
+    expected[8] = 32'h00000001;  // 1
+    expected[9] = 32'h00000000;  // 0
+    expected[10] = 32'h00000027;  // 39
+    expected[11] = 32'h00000040;  // 64
+    expected[12] = 32'h00000123;  // 291
+    expected[13] = 32'h00000123;  // 291
+    expected[14] = 32'h00000028;  // 40
+    expected[15] = 32'h0000014B;  // 331
+    expected[16] = 32'h00000090;  // 144
+    expected[17] = 32'h000000E9;  // 233
+    expected[18] = 32'h0000000E;  // 14
+    expected[19] = 32'h0000000E;  // 14
+    expected[20] = 32'h00000261;  // 609
+    expected[21] = 32'h00000015;  // 21
+    expected[22] = 32'h00000015;  // 21
+    expected[23] = 32'h00000006;  // 6
+    expected[24] = 32'h00000015;  // 21
+    expected[25] = 32'h0000001B;  // 27
+    expected[26] = 32'h000000CD;  // 205
+    expected[27] = 32'h12345678;  // 0x12345678
+    expected[28] = 32'h55555555;  // 0x55555555
+    expected[29] = 32'h4761032D;  // 0x4761032D
+    expected[30] = 32'h000001F4;  // 500
+    expected[31] = 32'hAEEABACA;  // Checksum
 
     errors = 0;
   end
@@ -209,7 +194,7 @@ module tb_risc;
       settle_cycles = 0;
       while (settle_cycles < 5) begin
         @(posedge clk);
-        if (imem_addr == 32'd192) settle_cycles = settle_cycles + 1;
+        if (u_system.imem_addr >= 32'd356) settle_cycles = settle_cycles + 1;
         else settle_cycles = 0;
       end
     end

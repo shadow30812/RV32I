@@ -4,7 +4,7 @@
 
 module fetch #(
     parameter PC_WIDTH      = 32,  // Program Counter bit-length
-    parameter BT_ADDR_WIDTH = 8    // 256 entry BHT/BTB 
+    parameter BT_ADDR_WIDTH = 8    // 256 entry BHT/BTB
 ) (
     // Control Signals
     input wire clk,
@@ -43,15 +43,17 @@ module fetch #(
   // Table arrays
   localparam BT_DEPTH = 1 << BT_ADDR_WIDTH;
   reg [          0:0] val_table[0:BT_DEPTH-1];  // Valid bits
-  reg [          1:0] bht_table[0:BT_DEPTH-1];  // 2-bit saturating counters
-  reg [ PC_WIDTH-1:0] btb_table[0:BT_DEPTH-1];  // Cached target addresses
-  reg [TAG_WIDTH-1:0] tag_table[0:BT_DEPTH-1];  // Aliasing protection tags
+
+  // Synthesize to LUTs instead of discrete FFs
+  (* ram_style = "distributed" *)reg [          1:0] bht_table[0:BT_DEPTH-1];  // 2-bit saturating counters
+  (* ram_style = "distributed" *)reg [ PC_WIDTH-1:0] btb_table[0:BT_DEPTH-1];  // Cached target addresses
+  (* ram_style = "distributed" *)reg [TAG_WIDTH-1:0] tag_table[0:BT_DEPTH-1];  // Aliasing protection tags
 
   // 2-bit BHT states
   localparam SNT = 2'b00;
   localparam WNT = 2'b01;
-  localparam WT = 2'b10;
-  localparam ST = 2'b11;
+  localparam WT  = 2'b10;
+  localparam ST  = 2'b11;
 
   // Branch Prediction Logic
   wire [BT_ADDR_WIDTH-1:0] fetch_idx = pc_reg[BT_ADDR_WIDTH+1:2];
@@ -66,11 +68,11 @@ module fetch #(
   wire                     pred_taken = current_val && tag_match && current_bht[1];
   wire [     PC_WIDTH-1:0] pred_target = current_btb;
 
-  // Priority Decoder for next PC and Instruction Fetching 
+  // Priority Decoder for next PC and Instruction Fetching
   assign imem_addr = pc_reg;
   assign next_pc   = actual_mispredict ? (actual_branch_taken ? actual_target : actual_pc + 4) : 
-                     stall ? pc_reg : 
-                     pred_taken ? pred_target : 
+                     stall ? pc_reg :
+                     pred_taken ? pred_target :
                      (pc_reg + 4);
 
   // Sequential Logic : PC Update and IF/ID Register
@@ -97,32 +99,29 @@ module fetch #(
     end
   end
 
+  // Synthesis maps into BRAM power-on initialization (INIT_xx parameters)
+  integer i;
+  initial begin
+    for (i = 0; i < BT_DEPTH; i = i + 1) begin
+      bht_table[i] = WNT;
+      btb_table[i] = RV32I_NOA;
+      tag_table[i] = {TAG_WIDTH{1'b0}};
+    end
+  end
+
   // Sequential Logic : BHT/BTB/Tag Update (from Decode)
-  wire    [BT_ADDR_WIDTH-1:0] update_idx = actual_pc[BT_ADDR_WIDTH+1:2];
-  wire    [    TAG_WIDTH-1:0] update_tag = actual_pc[PC_WIDTH-1:BT_ADDR_WIDTH+2];
-  integer                     i;
+  wire [BT_ADDR_WIDTH-1:0] update_idx = actual_pc[BT_ADDR_WIDTH+1:2];
+  wire [    TAG_WIDTH-1:0] update_tag = actual_pc[PC_WIDTH-1:BT_ADDR_WIDTH+2];
 
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      for (i = 0; i < BT_DEPTH; i = i + 1) begin
-        bht_table[i] <= WNT;
-        val_table[i] <= 1'b0;
-        btb_table[i] <= RV32I_NOA;
-        tag_table[i] <= {TAG_WIDTH{1'b0}};
-      end
+  // Purely Synchronous RAM Writes
+  always @(posedge clk) begin
+    if (actual_branch_valid) begin
+      btb_table[update_idx] <= actual_target;
+      tag_table[update_idx] <= update_tag;
 
-    end else if (actual_branch_valid) begin
-      // Force override if tags don't match
       if (tag_table[update_idx] != update_tag) begin
-        val_table[update_idx] <= 1'b1;
-        btb_table[update_idx] <= actual_target;
-        tag_table[update_idx] <= update_tag;
         bht_table[update_idx] <= actual_branch_taken ? WT : WNT;
-
       end else begin
-        val_table[update_idx] <= 1'b1;
-        btb_table[update_idx] <= actual_target;
-        // Saturating Counter Machine
         case (bht_table[update_idx])
           SNT:     bht_table[update_idx] <= actual_branch_taken ? WNT : SNT;
           WNT:     bht_table[update_idx] <= actual_branch_taken ? WT : SNT;
@@ -131,6 +130,16 @@ module fetch #(
           default: bht_table[update_idx] <= WT;
         endcase
       end
+    end
+  end
+  // Valid Table Management (With async reset)
+  always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+      for (i = 0; i < BT_DEPTH; i = i + 1) begin
+        val_table[i] <= 1'b0;
+      end
+    end else if (actual_branch_valid) begin
+      val_table[update_idx] <= 1'b1;
     end
   end
 

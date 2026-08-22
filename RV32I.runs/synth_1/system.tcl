@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.runs/synth_1/system.tcl"
+  variable script "/mnt/Windows/Well/Projects/RV32I/RV32I.runs/synth_1/system.tcl"
   variable category "vivado_synth"
 }
 
@@ -57,33 +57,36 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param general.usePosixSpawnForFork 1
+set_param chipscope.maxJobs 4
 OPTRACE "Creating in-memory project" START { }
-create_project -in_memory -part xc7k70tfbv676-1
+create_project -in_memory -part xc7k325tfbv900-3
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.cache/wt [current_project]
-set_property parent.project_path /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.xpr [current_project]
+set_property webtalk.parent_dir /mnt/Windows/Well/Projects/RV32I/RV32I.cache/wt [current_project]
+set_property parent.project_path /mnt/Windows/Well/Projects/RV32I/RV32I.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.cache/ip [current_project]
+set_property ip_output_repo /mnt/Windows/Well/Projects/RV32I/RV32I.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/cache.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/core.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/decode.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/execute.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/fetch.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/fifo.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/hazard.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/memory.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/regfile.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/top.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/writeback.v
-  /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/system.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/core.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/dcache.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/decode.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/execute.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/fetch.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/fifo.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/hazard.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/icache.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/memory.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/ram.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/regfile.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/top.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/writeback.v
+  /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/sources_1/imports/src/system.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -94,14 +97,14 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/constrs_1/new/timing.xdc
-set_property used_in_implementation false [get_files /media/shadow30812/Windows-SSD/Well/Projects/RV32I/RV32I.srcs/constrs_1/new/timing.xdc]
+read_xdc /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/constrs_1/new/clk.xdc
+set_property used_in_implementation false [get_files /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/constrs_1/new/clk.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top system -part xc7k70tfbv676-1
+synth_design -top system -part xc7k325tfbv900-3
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"

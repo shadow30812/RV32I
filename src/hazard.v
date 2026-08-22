@@ -4,7 +4,8 @@
 
 module hazard (
     // Global Memory Control
-    input wire stall_mem,  // High when Cache or MMIO is busy
+    input wire stall_mem,    // High when Cache or MMIO is busy
+    input wire stall_icache, // High on I-Cache miss
 
     // ID Stage Inputs
     input wire [ 4:0] id_ex_rs1_addr,
@@ -98,9 +99,9 @@ module hazard (
   wire id_hazard_stall = load_use_stall || branch_stall;  // Stall for either hazard
 
   // Global Control Line Assignments
-  assign stall_if = stall_mem || id_hazard_stall;
-  assign stall_id = stall_mem;
+  assign stall_if = stall_mem || stall_icache || id_hazard_stall;
+  assign stall_id = stall_mem || stall_icache;
   assign stall_ex = stall_mem;
-  assign flush_ex = id_hazard_stall && !stall_mem;
+  assign flush_ex = (id_hazard_stall || stall_icache) && !stall_mem;
 
 endmodule

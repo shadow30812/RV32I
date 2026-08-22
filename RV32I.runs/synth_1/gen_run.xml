@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7k70tfbv676-1" LaunchTime="1782933929">
+<GenRun Id="synth_1" LaunchPart="xc7k325tfbv900-3" LaunchTime="1787428473">
   <File Type="VDS-TIMING-PB" Name="system_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="system_timing_summary_synth.rpt"/>
-  <File Type="PA-TCL" Name="system.tcl"/>
   <File Type="RDS-DCP" Name="system.dcp"/>
-  <File Type="REPORTS-TCL" Name="system_reports.tcl"/>
-  <File Type="RDS-RDS" Name="system.vds"/>
-  <File Type="RDS-PROPCONSTRS" Name="system_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="system_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="system_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="system_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="system_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="system.vds"/>
+  <File Type="REPORTS-TCL" Name="system_reports.tcl"/>
+  <File Type="PA-TCL" Name="system.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/imports/src/cache.v">
+    <File Path="$PSRCDIR/sources_1/imports/src/core.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/src/cache.v"/>
-        <Attr Name="ImportTime" Val="1782850528"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../SPI/src/core.v"/>
+        <Attr Name="ImportTime" Val="1781108071"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/src/core.v">
+    <File Path="$PSRCDIR/sources_1/imports/src/dcache.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../SPI/src/core.v"/>
-        <Attr Name="ImportTime" Val="1781108071"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/src/dcache.v"/>
+        <Attr Name="ImportTime" Val="1787420198"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -50,7 +50,7 @@
     <File Path="$PSRCDIR/sources_1/imports/src/fetch.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/src/fetch.v"/>
-        <Attr Name="ImportTime" Val="1782850017"/>
+        <Attr Name="ImportTime" Val="1787406968"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -68,7 +68,16 @@
     <File Path="$PSRCDIR/sources_1/imports/src/hazard.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/src/hazard.v"/>
-        <Attr Name="ImportTime" Val="1782843747"/>
+        <Attr Name="ImportTime" Val="1787420708"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/src/icache.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/src/icache.v"/>
+        <Attr Name="ImportTime" Val="1787420199"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -83,10 +92,19 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/imports/src/ram.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/src/ram.v"/>
+        <Attr Name="ImportTime" Val="1787422138"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/imports/src/regfile.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/src/regfile.v"/>
-        <Attr Name="ImportTime" Val="1781107998"/>
+        <Attr Name="ImportTime" Val="1787421891"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -113,7 +131,7 @@
     <File Path="$PSRCDIR/sources_1/imports/src/system.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/src/system.v"/>
-        <Attr Name="ImportTime" Val="1782849957"/>
+        <Attr Name="ImportTime" Val="1787418991"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -127,14 +145,19 @@
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PSRCDIR/constrs_1/new/timing.xdc">
+    <File Path="$PSRCDIR/constrs_1/new/clk.xdc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/constrs_1/imports/RV32I/imem.hex">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/imem.hex"/>
+        <Attr Name="ImportTime" Val="1787423503"/>
+      </FileInfo>
+    </File>
     <Config>
-      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/timing.xdc"/>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>
   </FileSet>
@@ -145,7 +168,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2026">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
