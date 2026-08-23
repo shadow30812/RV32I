@@ -2,10 +2,10 @@
 
 module tb_risc;
 
-  reg  clk;
-  reg  rst_n;
+  reg clk;
+  reg rst_n;
 
-  reg  spi_miso;
+  reg spi_miso;
   wire spi_mosi;
   wire spi_sclk;
   wire spi_cs_n;
@@ -185,7 +185,12 @@ module tb_risc;
 
     if (cycle_count > 0) begin
       $display("  IPC                       : %0d (x1000)", (instr_count * 1000) / cycle_count);
-      if (log_file) $fdisplay(log_file, "  IPC                       : %0d (x1000)", (instr_count * 1000) / cycle_count);
+      if (log_file)
+        $fdisplay(
+            log_file,
+            "  IPC                       : %0d (x1000)",
+            (instr_count * 1000) / cycle_count
+        );
     end
 
     $display("  Branches Resolved         : %0d", branch_total);
@@ -196,16 +201,11 @@ module tb_risc;
     end
 
     if (branch_total > 0) begin
-      $display(
-          "  Branch Predictor Accuracy : %0d%%",
-          ((branch_total - branch_mispredicts) * 100) / branch_total
-      );
+      $display("  Branch Predictor Accuracy : %0d%%",
+               ((branch_total - branch_mispredicts) * 100) / branch_total);
       if (log_file) begin
-        $fdisplay(
-            log_file,
-            "  Branch Predictor Accuracy : %0d%%",
-            ((branch_total - branch_mispredicts) * 100) / branch_total
-        );
+        $fdisplay(log_file, "  Branch Predictor Accuracy : %0d%%",
+                  ((branch_total - branch_mispredicts) * 100) / branch_total);
       end
     end
 
@@ -236,7 +236,10 @@ module tb_risc;
       actual = u_system.u_regfile.registers[reg_idx];
       if (actual !== expected[reg_idx]) begin
         $display("[FAIL] x%0d : Expected 0x%h, Got 0x%h", reg_idx, expected[reg_idx], actual);
-        if (log_file) $fdisplay(log_file, "[FAIL] x%0d : Expected 0x%h, Got 0x%h", reg_idx, expected[reg_idx], actual);
+        if (log_file)
+          $fdisplay(
+              log_file, "[FAIL] x%0d : Expected 0x%h, Got 0x%h", reg_idx, expected[reg_idx], actual
+          );
         errors = errors + 1;
       end else begin
         $display("[PASS] x%0d = 0x%h", reg_idx, actual);
