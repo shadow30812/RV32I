@@ -22,7 +22,7 @@ module tb_risc;
   );
 
   initial begin
-    log_file = $fopen("results.txt", "w");
+    log_file = $fopen("RV32I/results.txt", "w");
     if (!log_file) begin
       $display("[ERROR] Could not open results.txt for writing.");
     end
