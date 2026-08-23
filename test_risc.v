@@ -10,6 +10,8 @@ module tb_risc;
   wire spi_sclk;
   wire spi_cs_n;
 
+  integer log_file;
+
   system u_system (
       .clk     (clk),
       .rst_n   (rst_n),
@@ -18,6 +20,13 @@ module tb_risc;
       .spi_sclk(spi_sclk),
       .spi_cs_n(spi_cs_n)
   );
+
+  initial begin
+    log_file = $fopen("results.txt", "w");
+    if (!log_file) begin
+      $display("[ERROR] Could not open results.txt for writing.");
+    end
+  end
 
   initial begin
     clk = 0;
@@ -36,6 +45,10 @@ module tb_risc;
 
     #50000;
     $display("[FATAL] Simulation Timeout. Check for infinite loops or stalled FSMs.");
+    if (log_file) begin
+      $fdisplay(log_file, "[FATAL] Simulation Timeout. Check for infinite loops or stalled FSMs.");
+      $fclose(log_file);
+    end
     $finish;
   end
 
@@ -91,6 +104,7 @@ module tb_risc;
   always @(posedge clk) begin
     if (rst_n && wb_we && wb_addr != 5'd0) begin
       $display("[WB] t=%0t  x%0d <= 0x%h", $time, wb_addr, wb_data);
+      if (log_file) $fdisplay(log_file, "[WB] t=%0t  x%0d <= 0x%h", $time, wb_addr, wb_data);
     end
   end
 
@@ -129,11 +143,16 @@ module tb_risc;
   end
 
   initial begin
+    @(posedge rst_n);
     $display("=====================================================");
     $display("  Starting RV32I Pipeline Self-Checking Verification");
     $display("=====================================================");
+    if (log_file) begin
+      $fdisplay(log_file, "=====================================================");
+      $fdisplay(log_file, "  Starting RV32I Pipeline Self-Checking Verification");
+      $fdisplay(log_file, "=====================================================");
+    end
 
-    @(posedge rst_n);
     wait_for_completion;
 
     repeat (10) @(posedge clk);
@@ -141,6 +160,12 @@ module tb_risc;
     $display("-----------------------------------------------------");
     $display("  Architectural State Check (Final Register Values)");
     $display("-----------------------------------------------------");
+    if (log_file) begin
+      $fdisplay(log_file, "-----------------------------------------------------");
+      $fdisplay(log_file, "  Architectural State Check (Final Register Values)");
+      $fdisplay(log_file, "-----------------------------------------------------");
+    end
+
     for (k = 1; k < 32; k = k + 1) begin
       check_register(k);
     end
@@ -150,26 +175,56 @@ module tb_risc;
     $display("-----------------------------------------------------");
     $display("  Total Cycles              : %0d", cycle_count);
     $display("  Instructions Retired      : %0d", instr_count);
+    if (log_file) begin
+      $fdisplay(log_file, "-----------------------------------------------------");
+      $fdisplay(log_file, "  Performance Summary");
+      $fdisplay(log_file, "-----------------------------------------------------");
+      $fdisplay(log_file, "  Total Cycles              : %0d", cycle_count);
+      $fdisplay(log_file, "  Instructions Retired      : %0d", instr_count);
+    end
 
-    if (cycle_count > 0)
+    if (cycle_count > 0) begin
       $display("  IPC                       : %0d (x1000)", (instr_count * 1000) / cycle_count);
+      if (log_file) $fdisplay(log_file, "  IPC                       : %0d (x1000)", (instr_count * 1000) / cycle_count);
+    end
 
     $display("  Branches Resolved         : %0d", branch_total);
     $display("  Branch Mispredicts        : %0d", branch_mispredicts);
+    if (log_file) begin
+      $fdisplay(log_file, "  Branches Resolved         : %0d", branch_total);
+      $fdisplay(log_file, "  Branch Mispredicts        : %0d", branch_mispredicts);
+    end
 
-    if (branch_total > 0)
+    if (branch_total > 0) begin
       $display(
           "  Branch Predictor Accuracy : %0d%%",
           ((branch_total - branch_mispredicts) * 100) / branch_total
       );
+      if (log_file) begin
+        $fdisplay(
+            log_file,
+            "  Branch Predictor Accuracy : %0d%%",
+            ((branch_total - branch_mispredicts) * 100) / branch_total
+        );
+      end
+    end
 
     $display("-----------------------------------------------------");
+    if (log_file) $fdisplay(log_file, "-----------------------------------------------------");
+
     if (errors == 0) begin
       $display("  [SUCCESS] ALL CHECKS PASSED! 0 ERRORS.");
+      if (log_file) $fdisplay(log_file, "  [SUCCESS] ALL CHECKS PASSED! 0 ERRORS.");
     end else begin
       $display("  [FAILURE] TEST SUITE FAILED WITH %0d ERRORS.", errors);
+      if (log_file) $fdisplay(log_file, "  [FAILURE] TEST SUITE FAILED WITH %0d ERRORS.", errors);
     end
+
     $display("=====================================================");
+    if (log_file) begin
+      $fdisplay(log_file, "=====================================================");
+      $fclose(log_file);
+    end
 
     $finish;
   end
@@ -181,9 +236,11 @@ module tb_risc;
       actual = u_system.u_regfile.registers[reg_idx];
       if (actual !== expected[reg_idx]) begin
         $display("[FAIL] x%0d : Expected 0x%h, Got 0x%h", reg_idx, expected[reg_idx], actual);
+        if (log_file) $fdisplay(log_file, "[FAIL] x%0d : Expected 0x%h, Got 0x%h", reg_idx, expected[reg_idx], actual);
         errors = errors + 1;
       end else begin
         $display("[PASS] x%0d = 0x%h", reg_idx, actual);
+        if (log_file) $fdisplay(log_file, "[PASS] x%0d = 0x%h", reg_idx, actual);
       end
     end
   endtask
