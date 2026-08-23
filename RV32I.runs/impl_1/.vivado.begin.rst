@@ -13,3 +13,13 @@
     <Process Command="vivado" Owner="shadow30812" Host="localhost.localdomain" Pid="343616" HostCore="16" HostMemory="13776792">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="shadow30812" Host="localhost.localdomain" Pid="87426" HostCore="16" HostMemory="13776776">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="shadow30812" Host="localhost.localdomain" Pid="115009" HostCore="16" HostMemory="13776776">
+    </Process>
+</ProcessHandle>

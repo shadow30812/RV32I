@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2026.1 (lin64) Build 6511674 Tue Jun 16 11:01:26 MDT 2026
-| Date             : Sun Aug 23 01:26:15 2026
+| Date             : Sun Aug 23 11:26:33 2026
 | Host             : localhost.localdomain running 64-bit Rocky Linux 10.2 (Red Quartz)"
 RELEASE_TYPE="stable
 | Command          : report_power -file system_power_routed.rpt -pb system_power_summary_routed.pb -rpx system_power_routed.rpx
@@ -31,10 +31,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.193        |
+| Total On-Chip Power (W)  | 0.202        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.035        |
+| Dynamic (W)              | 0.044        |
 | Device Static (W)        | 0.158        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 99.6         |
@@ -53,19 +53,19 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.009 |        3 |       --- |             --- |
-| Slice Logic              |     0.010 |     3553 |       --- |             --- |
-|   LUT as Logic           |     0.008 |     1548 |    203800 |            0.76 |
+| Clocks                   |     0.011 |        3 |       --- |             --- |
+| Slice Logic              |     0.013 |     3553 |       --- |             --- |
+|   LUT as Logic           |     0.010 |     1548 |    203800 |            0.76 |
 |   LUT as Distributed RAM |     0.002 |      524 |     64000 |            0.82 |
 |   CARRY4                 |    <0.001 |       67 |     50950 |            0.13 |
 |   Register               |    <0.001 |      987 |    407600 |            0.24 |
 |   F7/F8 Muxes            |    <0.001 |      124 |    203800 |            0.06 |
 |   Others                 |     0.000 |       18 |       --- |             --- |
-| Signals                  |     0.013 |     2539 |       --- |             --- |
+| Signals                  |     0.017 |     2540 |       --- |             --- |
 | Block RAM                |     0.002 |        2 |       445 |            0.45 |
-| I/O                      |    <0.001 |        6 |       500 |            1.20 |
+| I/O                      |     0.001 |        6 |       500 |            1.20 |
 | Static Power             |     0.158 |          |           |                 |
-| Total                    |     0.193 |          |           |                 |
+| Total                    |     0.202 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,11 +75,11 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.102 |       0.034 |      0.068 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.111 |       0.043 |      0.068 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.028 |       0.000 |      0.028 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco18    |       1.800 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco18    |       1.800 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -132,7 +132,7 @@ Table of Contents
 +-------+--------+-----------------+
 | Clock | Domain | Constraint (ns) |
 +-------+--------+-----------------+
-| clk   | clk    |            10.0 |
+| clk   | clk    |             8.0 |
 +-------+--------+-----------------+
 
 
@@ -145,16 +145,16 @@ Table of Contents
 +-------------+-----------+
 | Name        | Power (W) |
 +-------------+-----------+
-| system      |     0.035 |
-|   spi_ctrl  |     0.001 |
-|   u_dcache  |     0.001 |
-|   u_decode  |     0.005 |
-|   u_execute |     0.006 |
-|   u_fetch   |     0.013 |
+| system      |     0.044 |
+|   spi_ctrl  |     0.002 |
+|   u_dcache  |     0.002 |
+|   u_decode  |     0.006 |
+|   u_execute |     0.008 |
+|   u_fetch   |     0.016 |
 |   u_icache  |     0.002 |
 |   u_memory  |     0.002 |
 |   u_ram     |     0.002 |
-|   u_regfile |     0.001 |
+|   u_regfile |     0.002 |
 +-------------+-----------+
 
 
