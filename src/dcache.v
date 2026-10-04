@@ -51,13 +51,20 @@ module dcache #(
   localparam STATE_READY = 2'b10;
 
   reg [1:0] state;
+  reg       issued;  // FETCH: request has reached RAM, so mem_ready now belongs to it
+
+  // Address/data for main memory are latched together with mem_req, so a
+  // write-through issued on a hit uses this store's address and data, not
+  // those of the next instruction occupying MEM one cycle later
+  reg [9:0]  mem_addr_r;
+  reg [31:0] mem_wdata_r;
 
   // Memory wrapper sees a hit either instantly (is_hit), or
   // when the Main Memory fetch is complete (STATE_READY).
   assign hit = is_hit || (req && state == STATE_READY);
   assign rdata = data_array[index];
-  assign mem_addr = addr[11:2];
-  assign mem_wdata = wdata;
+  assign mem_addr = mem_addr_r;
+  assign mem_wdata = mem_wdata_r;
 
   // Sequential Logic: Cache Update
   integer i;
@@ -66,7 +73,7 @@ module dcache #(
       // CACHE HIT: Update self & Write-Through
       data_array[index] <= wdata;
 
-    end else if (state == STATE_FETCH && mem_ready) begin
+    end else if (state == STATE_FETCH && issued && mem_ready) begin
       tag_array[index]  <= tag;
       data_array[index] <= (wr_en) ? wdata : mem_rdata;
     end
@@ -74,24 +81,33 @@ module dcache #(
 
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-      state    <= STATE_IDLE;
-      mem_req   <= 1'b0;
-      mem_wr_en <= 1'b0;
+      state       <= STATE_IDLE;
+      mem_req     <= 1'b0;
+      mem_wr_en   <= 1'b0;
+      issued      <= 1'b0;
+      mem_addr_r  <= 10'b0;
+      mem_wdata_r <= 32'b0;
       for (i = 0; i < CACHE_DEPTH; i = i + 1) valid_array[i] <= 1'b0;
 
     end else begin
       case (state)
 
         STATE_IDLE: begin
+          issued <= 1'b0;
           if (req && !is_hit) begin
             // CACHE MISS: Read or Write from/to Main Memory
-            state     <= STATE_FETCH;
-            mem_req   <= 1'b1;
-            mem_wr_en <= wr_en;
+            state       <= STATE_FETCH;
+            mem_req     <= 1'b1;
+            mem_wr_en   <= wr_en;
+            mem_addr_r  <= addr[11:2];
+            mem_wdata_r <= wdata;
 
           end else if (req && wr_en && is_hit) begin
-            mem_req   <= 1'b1;
-            mem_wr_en <= 1'b1;
+            // WRITE HIT: write-through with this store's address and data
+            mem_req     <= 1'b1;
+            mem_wr_en   <= 1'b1;
+            mem_addr_r  <= addr[11:2];
+            mem_wdata_r <= wdata;
 
           end else begin
             // De-assert En next cycle
@@ -101,7 +117,10 @@ module dcache #(
         end
 
         STATE_FETCH: begin
-          if (mem_ready) begin
+          // First FETCH cycle only issues; a mem_ready seen then is left over
+          // from an earlier access (e.g. a write-through) and is ignored
+          if (!issued) issued <= 1'b1;
+          else if (mem_ready) begin
             // Allocate cache line from physical memory
             valid_array[index] <= 1'b1;
             mem_req            <= 1'b0;

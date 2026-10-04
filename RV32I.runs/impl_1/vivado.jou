@@ -3,23 +3,23 @@
 # SW Build 6511674 on Tue Jun 16 11:01:26 MDT 2026
 # IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
 # SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
-# Start of session at: Sun Aug 23 11:25:04 2026
-# Process ID         : 115065
-# Current directory  : /mnt/Windows/Well/Projects/RV32I/RV32I.runs/impl_1
+# Start of session at: Sun Oct  4 13:28:31 2026
+# Process ID         : 977144
+# Current directory  : /mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.runs/impl_1
 # Command line       : vivado -log system.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source system.tcl -notrace
-# Log file           : /mnt/Windows/Well/Projects/RV32I/RV32I.runs/impl_1/system.vdi
-# Journal file       : /mnt/Windows/Well/Projects/RV32I/RV32I.runs/impl_1/vivado.jou
+# Log file           : /mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.runs/impl_1/system.vdi
+# Journal file       : /mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.runs/impl_1/vivado.jou
 # Running On         : localhost.localdomain
 # Platform           : rocky
 # Operating System   : Rocky Linux 10.2 (Red Quartz)"
 RELEASE_TYPE="stable
 # Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
-# CPU Frequency      : 1953.892 MHz
+# CPU Frequency      : 603.435 MHz
 # CPU Physical cores : 12
 # CPU Logical cores  : 16
 # Host memory        : 14107 MB
 # Swap memory        : 8589 MB
 # Total Virtual      : 22697 MB
-# Available Virtual  : 14508 MB
+# Available Virtual  : 6646 MB
 #-----------------------------------------------------------
 source system.tcl -notrace

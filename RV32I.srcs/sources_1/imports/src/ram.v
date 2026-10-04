@@ -8,7 +8,7 @@
 module ram #(
     parameter ADDR_WIDTH = 10,  // 1024 words = 4 KB RAM (addr [11:2])
     parameter DATA_WIDTH = 32,
-    parameter INIT_HEX = "/home/shadow30812/LWL/Projects/RV32I/imem.hex"
+    parameter INIT_HEX = "/home/shadow30812/LWL/Projects/EE Core/RV32I/imem.hex"
 ) (
     // Control Signal
     input wire clk,

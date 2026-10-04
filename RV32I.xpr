@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="72" Path="/mnt/Windows/Well/Projects/RV32I/RV32I.xpr">
+<Project Product="Vivado" Version="7" Minor="72" Path="/mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="5d4e393a7160459ab620ad0363073f70"/>
@@ -201,6 +201,12 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/RV32I/imem.hex">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/imem.hex"/>
+          <Attr Name="ImportTime" Val="1791100097"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="system"/>
@@ -218,10 +224,11 @@
       <File Path="$PSRCDIR/constrs_1/imports/RV32I/imem.hex">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/imem.hex"/>
-          <Attr Name="ImportTime" Val="1787423503"/>
+          <Attr Name="ImportTime" Val="1791100091"/>
         </FileInfo>
       </File>
       <Config>
+        <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/clk.xdc"/>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>
     </FileSet>
@@ -236,7 +243,12 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../../../home/shadow30812/LWL/Projects/RV32I/imem.hex"/>
+      <File Path="$PSRCDIR/sim_1/imports/RV32I/imem.hex">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/imem.hex"/>
+          <Attr Name="ImportTime" Val="1791100097"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="tb_risc"/>

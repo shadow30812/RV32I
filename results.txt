@@ -1,6 +1,3 @@
-$ cd /mnt/Windows/Well/Projects && iverilog -o RV32I/sim.out RV32I/src/*.v SPI/src/*.v RV32I/test_risc.v && vvp RV32I/sim.out && gtkwave RV32I/dump_risc.vcd
-WARNING: RV32I/src/ram.v:42: $readmemh(RV32I/imem.hex): Not enough words in the file for the requested range [0:1023].
-VCD info: dumpfile RV32I/dump_risc.vcd opened for output.
 =====================================================
   Starting RV32I Pipeline Self-Checking Verification
 =====================================================
@@ -215,18 +212,11 @@ VCD info: dumpfile RV32I/dump_risc.vcd opened for output.
   Performance Summary
 -----------------------------------------------------
   Total Cycles              : 536
-  Instructions Retired      : 180
-  IPC                       : 335 (x1000)
-  Branches Resolved         : 85
+  Instructions Retired      : 219
+  IPC                       : 408 (x1000)
+  Branches Resolved         : 43
   Branch Mispredicts        : 11
-  Branch Predictor Accuracy : 87%
+  Branch Predictor Accuracy : 74%
 -----------------------------------------------------
   [SUCCESS] ALL CHECKS PASSED! 0 ERRORS.
 =====================================================
-RV32I/test_risc.v:174: $finish called at 5385000 (1ps)
-
-GTKWave Analyzer v3.3.121 (w)1999-2024 BSI
-
-[0] start time.
-[5385000] end time.
-WM Destroy

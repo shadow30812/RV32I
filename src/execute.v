@@ -114,7 +114,9 @@ module execute #(
 
     end else if (!stall) begin
       ex_mem_pc         <= id_ex_pc;
-      ex_mem_alu_result <= alu_out;
+      // JAL carries its link value (PC+4) in the result field so MEM-stage
+      // forwarding hands dependents the correct rd value
+      ex_mem_alu_result <= (id_wb_sel == 2'b10) ? id_ex_pc + 32'd4 : alu_out;
       ex_mem_rs2_data   <= fwd_rs2;
       ex_mem_rd_addr    <= id_ex_rd_addr;
       ex_mem_read       <= id_mem_read;

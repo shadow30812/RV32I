@@ -21,7 +21,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/mnt/Windows/Well/Projects/RV32I/RV32I.runs/synth_1'
+HD_PWD='/mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

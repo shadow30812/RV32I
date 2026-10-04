@@ -12,6 +12,7 @@ module decode #(
     // Pipeline Control (from Hazard Unit)
     input wire stall,
     input wire flush,
+    input wire hold,   // ID hazard stall: operands not ready, do not resolve yet
 
     // IF/ID Pipeline Registers
     input wire [PC_WIDTH-1:0] if_id_pc,
@@ -28,7 +29,8 @@ module decode #(
     output wire [4:0] rs2_addr,
 
     // Branch Resolution (to Fetch Stage)
-    output wire actual_branch_valid,
+    output wire id_is_ctrl,           // Raw: branch or JAL sits in ID (to Hazard Unit)
+    output wire actual_branch_valid,  // Resolved this cycle (once per branch)
     output wire actual_branch_taken,
     output wire [PC_WIDTH-1:0] actual_target,
     output wire [PC_WIDTH-1:0] actual_pc,
@@ -67,8 +69,13 @@ module decode #(
   wire [2:0] funct3 = if_id_inst[14:12];
   wire [6:0] funct7 = if_id_inst[31:25];
 
-  assign rs1_addr = (opcode == 7'b0110111) ? 5'b0 : if_id_inst[19:15];  // Special case- LUI
-  assign rs2_addr = if_id_inst[24:20];
+  // Only report source registers the instruction actually reads, so immediate
+  // bits in the rs1/rs2 fields never create false hazards or forwarding
+  wire uses_rs1 = (opcode != 7'b0110111) && (opcode != 7'b1101111);  // not LUI, JAL
+  wire uses_rs2 = (opcode == 7'b0110011) || (opcode == 7'b0100011) ||  // R-type, SW
+                  (opcode == 7'b1100011);                              // Branches
+  assign rs1_addr = uses_rs1 ? if_id_inst[19:15] : 5'b0;
+  assign rs2_addr = uses_rs2 ? if_id_inst[24:20] : 5'b0;
   wire [ 4:0] rd_addr = if_id_inst[11:7];
 
   // Combinational Logic: Immediate Generation
@@ -195,11 +202,14 @@ module decode #(
   (funct3 == 3'b101) ? ge :  // BGE
   1'b0;  // Default
 
-  assign actual_branch_valid = is_branch || is_jal;
+  // Resolve only when operands are final and the branch leaves ID this cycle:
+  // never on stale data during a hazard stall, and exactly once per branch
+  assign id_is_ctrl          = is_branch || is_jal;
+  assign actual_branch_valid = id_is_ctrl && !stall && !hold;
   assign actual_branch_taken = (is_branch && branch_condition_met) || is_jal;
   assign actual_target = if_id_pc + imm_val;
   assign actual_pc = if_id_pc;
-  assign actual_mispredict    = actual_branch_valid && (if_id_pred_taken != actual_branch_taken) && !stall;
+  assign actual_mispredict = actual_branch_valid && (if_id_pred_taken != actual_branch_taken);
   // B-Type and JAL targets are PC-relative constants for RV32I
   // so correctness of direction and BTB tag guarantess correctness
 

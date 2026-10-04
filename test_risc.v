@@ -1,5 +1,13 @@
 `timescale 1ns / 1ps
 
+// File paths: the documented iverilog flow runs from the parent of RV32I/ (see cmd.txt);
+// Vivado xsim runs in RV32I.sim/sim_1/behav/xsim, four levels below RV32I/.
+`ifdef XILINX_SIMULATOR
+`define TB_ROOT "../../../../"
+`else
+`define TB_ROOT "RV32I/"
+`endif
+
 module tb_risc;
 
   reg clk;
@@ -21,8 +29,13 @@ module tb_risc;
       .spi_cs_n(spi_cs_n)
   );
 
+  // Program image, relative to the directory the simulation runs from (see cmd.txt)
+  defparam u_system.u_ram.INIT_HEX = {
+    `TB_ROOT, "imem.hex"
+  };
+
   initial begin
-    log_file = $fopen("RV32I/results.txt", "w");
+    log_file = $fopen({`TB_ROOT, "results.txt"}, "w");
     if (!log_file) begin
       $display("[ERROR] Could not open results.txt for writing.");
     end
@@ -40,7 +53,7 @@ module tb_risc;
   end
 
   initial begin
-    $dumpfile("RV32I/dump_risc.vcd");
+    $dumpfile({`TB_ROOT, "dump_risc.vcd"});
     $dumpvars(0, tb_risc);
 
     #50000;
@@ -52,8 +65,8 @@ module tb_risc;
     $finish;
   end
 
-  reg     [31:0] expected[0:31];
-  reg            checked [0:31];
+  reg     [31:0] expected[32];
+  reg            checked [32];
   integer        errors;
   integer        k;
 
@@ -113,13 +126,15 @@ module tb_risc;
   integer branch_total;
   integer branch_mispredicts;
 
+  // actual_branch_valid pulses once per branch/JAL, in the cycle it resolves
   wire branch_resolved = u_system.u_decode.actual_branch_valid;
   wire branch_mispredict = u_system.u_decode.actual_mispredict;
-  wire pipeline_stalled = u_system.stall_id;
-  wire pipeline_flushed = u_system.u_decode.flush;
 
-  reg [31:0] wb_pc_prev;
-  wire [31:0] wb_pc_cur = u_system.mem_wb_pc;
+  // Every instruction that leaves ID reaches WB (nothing is squashed after ID),
+  // so count instructions as they leave ID. ifid_valid tracks whether IF/ID
+  // holds a real fetched instruction rather than a reset/flush NOP.
+  reg ifid_valid;
+  wire id_advance = ifid_valid && !u_system.stall_id && !u_system.flush_ex;
 
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -127,18 +142,16 @@ module tb_risc;
       instr_count        <= 0;
       branch_total       <= 0;
       branch_mispredicts <= 0;
-      wb_pc_prev         <= 32'hFFFF_FFFF;
+      ifid_valid         <= 1'b0;
     end else begin
       cycle_count <= cycle_count + 1;
-      wb_pc_prev  <= wb_pc_cur;
 
-      if (branch_resolved) begin
-        branch_total = branch_total + 1;
-        if (branch_mispredict) branch_mispredicts = branch_mispredicts + 1;
-      end
+      if (branch_resolved) branch_total <= branch_total + 1;
+      if (branch_mispredict) branch_mispredicts <= branch_mispredicts + 1;
+      if (id_advance) instr_count <= instr_count + 1;
 
-      if (u_system.mem_reg_write && (wb_pc_cur !== wb_pc_prev)) instr_count <= instr_count + 1;
-      else if (u_system.ex_mem_write && !u_system.stall_mem) instr_count <= instr_count + 1;
+      if (u_system.actual_mispredict) ifid_valid <= 1'b0;
+      else if (!u_system.stall_if) ifid_valid <= 1'b1;
     end
   end
 

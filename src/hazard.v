@@ -45,7 +45,8 @@ module hazard (
     output wire stall_if,
     output wire stall_id,
     output wire stall_ex,
-    output wire flush_ex
+    output wire flush_ex,
+    output wire id_hazard_stall  // To Decode: hold branch resolution
 );
 
   // Forwarding to EX Stage (ALU Operands)
@@ -96,7 +97,7 @@ module hazard (
         (mem_wb_rd_addr == id_ex_rs2_addr)))
     );
 
-  wire id_hazard_stall = load_use_stall || branch_stall;  // Stall for either hazard
+  assign id_hazard_stall = load_use_stall || branch_stall;  // Stall for either hazard
 
   // Global Control Line Assignments
   assign stall_if = stall_mem || stall_icache || id_hazard_stall;

@@ -209,12 +209,17 @@ The benchmark test program (`imem.s`) comprehensively exercises the pipeline acr
 ### Verification Metrics
 - **Register Checks**: ALL 31 REGISTER CHECKS PASSED (0 errors). Cumulative checksum (x31) matches expected `0xAEEABACA`.
 - **Total Cycles**: 536
-- **Instructions Retired**: 180
-- **IPC (Instructions Per Cycle)**: 0.335
+- **Instructions Retired**: 219
+- **IPC (Instructions Per Cycle)**: 0.408
 - **Branch Statistics**:
-  - Branches Resolved: 85
+  - Branches Resolved: 43
   - Branch Mispredicts: 11
-  - **Predictor Accuracy**: 87%
+  - **Predictor Accuracy**: 74%
+
+Branches and jumps are counted once, when they resolve, and instructions are counted as they leave Decode, so branches count as retired instructions. Both counts match a reference instruction-set simulation of the benchmark.
+
+### Regression Suite
+`tests/run_regression.sh` runs the checksum benchmark plus four directed programs, each written to expose one defect found on Oct 4, 2026: JAL link forwarding, the D-cache write-through, branch resolution on stale operands, and JAL immediate bits treated as source registers. A fifth defect, multiple predictor updates per branch, is caught by the branch-resolution count every program checks. All five programs fail on the pre-fix RTL and pass on the current RTL; see `docs/bug_postmortem.md`.
 
 ## 6. Future Work & Performance Optimization
 

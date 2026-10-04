@@ -33,6 +33,7 @@ module system (
   // Branch Resolution (Decode -> Fetch)
   wire [31:0] actual_target, actual_pc;
   wire actual_branch_valid, actual_branch_taken, actual_mispredict;
+  wire id_is_ctrl, id_hazard_stall;
 
   // Decode -> RegFile (Combinational)
   wire [31:0] rs1_data, rs2_data;
@@ -120,6 +121,7 @@ module system (
       .rst_n              (rst_n),
       .stall              (stall_id),
       .flush              (flush_ex),
+      .hold               (id_hazard_stall),
       .if_id_pc           (if_id_pc),
       .if_id_inst         (if_id_inst),
       .if_id_pred_taken   (if_id_pred_taken),
@@ -127,6 +129,7 @@ module system (
       .rs2_data_fwd       (rs2_data_fwd),
       .rs1_addr           (rs1_addr),
       .rs2_addr           (rs2_addr),
+      .id_is_ctrl         (id_is_ctrl),
       .actual_branch_valid(actual_branch_valid),
       .actual_branch_taken(actual_branch_taken),
       .actual_target      (actual_target),
@@ -246,7 +249,7 @@ module system (
       // ID Stage Inputs
       .id_ex_rs1_addr (rs1_addr),
       .id_ex_rs2_addr (rs2_addr),
-      .id_is_branch   (actual_branch_valid),
+      .id_is_branch   (id_is_ctrl),
       .id_rs1_data_reg(rs1_data),
       .id_rs2_data_reg(rs2_data),
 
@@ -277,7 +280,8 @@ module system (
       .stall_if    (stall_if),
       .stall_id    (stall_id),
       .stall_ex    (stall_ex),
-      .flush_ex    (flush_ex)
+      .flush_ex    (flush_ex),
+      .id_hazard_stall(id_hazard_stall)
   );
 
   // 8a. L1 I-Cache

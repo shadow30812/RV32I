@@ -172,7 +172,7 @@ Standard academic processors often bypass physical memory latencies, resolve con
 ### **Dynamic Branch Prediction vs. Static Prediction**
 
 * **Trade-off**: A static "always not taken" predictor is trivial to implement but incurs a misprediction penalty on every taken branch. A dynamic predictor adds hardware cost (BHT/BTB/Tag storage) but learns branch behavior at runtime.
-* **Implementation**: This core uses a 256-entry dynamic predictor with 2-bit saturating counters. The predictor is indexed in the Fetch stage and trains from the Decode stage's resolution output. Aliasing protection via tag comparison prevents false-positive predictions from unrelated branches mapping to the same index. The measured branch prediction accuracy is **87%** (74 correct / 85 total branches), achieving **0-cycle penalty** on correct predictions and **1-cycle penalty** on mispredictions.
+* **Implementation**: This core uses a 256-entry dynamic predictor with 2-bit saturating counters. The predictor is indexed in the Fetch stage and trains from the Decode stage's resolution output. Aliasing protection via tag comparison prevents false-positive predictions from unrelated branches mapping to the same index. The measured branch prediction accuracy is **74%** (32 correct / 43 branches and jumps resolved), achieving **0-cycle penalty** on correct predictions and **1-cycle penalty** on mispredictions.
 
 ### **Early Branching vs. Critical Path Frequency**
 
@@ -316,11 +316,27 @@ Cumulative Checksum (x31) = 0xAEEABACA ✓
 | Performance Metric | Value |
 | :--- | ---: |
 | Total Cycles | 536 |
-| Instructions Retired | 180 |
-| IPC | 0.335 |
-| Branches Resolved | 85 |
+| Instructions Retired | 219 |
+| IPC | 0.408 |
+| Branches Resolved | 43 |
 | Branch Mispredicts | 11 |
-| **Branch Predictor Accuracy** | **87%** |
+| **Branch Predictor Accuracy** | **74%** |
+
+Each branch or jump is counted once, in the cycle it resolves, and instructions are counted as they leave Decode (nothing is squashed after ID), so branches count as retired instructions. Both counts match a reference instruction-set simulation of the program. Cycles include the short tail spent in the final halt loop.
+
+### **8.3. Regression Suite**
+
+`tests/run_regression.sh` assembles every program in `tests/programs/`, runs it on `tests/tb_regress.v`, and checks the final registers, data-RAM words and branch-resolution count listed in the matching `.exp` file. The testbench also fails if any branch resolves during an ID hazard stall.
+
+| Program | What it guards |
+| :--- | :--- |
+| `checksum` | The benchmark above: all 31 registers and 43 branch resolutions |
+| `bug1_jal_link_forward` | A JAL's link value forwarded from MEM is PC+4, not the ALU output |
+| `bug2_dcache_writethrough` | A write hit writes its own address and data through to RAM; a later conflict reload returns it |
+| `bug3_stale_branch` | A branch waiting on a forwarded operand does not resolve on stale register values |
+| `bug4_jal_false_dependency` | JAL immediate bits are never treated as source registers, so a JAL is never squashed |
+
+Bug 5 (the predictor being trained on every stall cycle) is covered by the branch-resolution counts in every `.exp` file. All five programs fail on the pre-fix RTL and pass on the current RTL. Root causes and fixes are in `docs/bug_postmortem.md`.
 
 ## **9\. Compilation, Simulation, and Verification Guide**
 
@@ -350,3 +366,9 @@ gtkwave RV32I/dump_risc.vcd
 ```
 
 This compilation flow ensures that all modules — including the core pipeline, hazard detection, cache hierarchy, memory subsystems, and SPI master — are compiled and verified.
+
+Run the regression suite from anywhere (it needs `python3`, `iverilog` and `vvp`, and finds `SPI/src` next to `RV32I`):
+
+```bash
+RV32I/tests/run_regression.sh
+```

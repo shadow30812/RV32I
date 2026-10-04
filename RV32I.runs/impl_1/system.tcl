@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "/mnt/Windows/Well/Projects/RV32I/RV32I.runs/impl_1/system.tcl"
+  variable script "/mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.runs/impl_1/system.tcl"
   variable category "vivado_impl"
 }
 
@@ -113,15 +113,15 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir /mnt/Windows/Well/Projects/RV32I/RV32I.cache/wt [current_project]
-  set_property parent.project_path /mnt/Windows/Well/Projects/RV32I/RV32I.xpr [current_project]
-  set_property ip_output_repo /mnt/Windows/Well/Projects/RV32I/RV32I.cache/ip [current_project]
+  set_property webtalk.parent_dir {/mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.cache/wt} [current_project]
+  set_property parent.project_path {/mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.xpr} [current_project]
+  set_property ip_output_repo {{/mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.cache/ip}} [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet /mnt/Windows/Well/Projects/RV32I/RV32I.runs/synth_1/system.dcp
+  add_files -quiet {{/mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.runs/synth_1/system.dcp}}
 OPTRACE "read constraints: implementation" START { }
-  read_xdc /mnt/Windows/Well/Projects/RV32I/RV32I.srcs/constrs_1/new/clk.xdc
+  read_xdc {{/mnt/Windows/Well/Projects/EE Core/RV32I/RV32I.srcs/constrs_1/new/clk.xdc}}
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "read constraints: implementation_pre" START { }
 OPTRACE "read constraints: implementation_pre" END { }
