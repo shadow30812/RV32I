@@ -8,7 +8,7 @@ This repository contains a synthesizable, first-principles Verilog implementatio
 
 Unlike standard textbook academic implementations, this processor integrates a **256-entry dynamic branch predictor** (2-bit saturating counter BHT with BTB and tag-based aliasing protection), a **split Harvard L1 cache hierarchy** (separate 64-entry direct-mapped Instruction and Data caches), early branch-resolution in the Decode stage, a robust structural interlock and data hazard unit with multi-stage forwarding, and **Dual-Port Block RAM** as physical main memory. Additionally, the system includes a Memory-Mapped I/O (MMIO) bridge interfacing the CPU to a fully functional, configurable SPI Master peripheral.
 
-**Target FPGA**: Kintex-7 `xc7k325tfbv900-3` — Verified at **125 MHz** with **+1.685 ns** setup slack (Fmax ≈ 158 MHz). Total on-chip power: **202 mW**.
+**Target FPGA**: Kintex-7 `xc7k325tfbv900-3` — Verified at **150 MHz** with **+0.993 ns** setup slack (Fmax ≈ 176 MHz). Total on-chip power: **204 mW**.
 
 ## **2\. Microarchitectural Topology**
 
@@ -177,7 +177,7 @@ Standard academic processors often bypass physical memory latencies, resolve con
 ### **Early Branching vs. Critical Path Frequency**
 
 * **Trade-off**: Resolving branches in the Decode stage (ID) reduces the branch misprediction penalty to 1 cycle, compared to 2 cycles when resolved in the Execute stage (EX).
-* **Implementation**: The branch target calculation and comparison logic operates in the ID stage using forwarded operands from the hazard unit. Because comparison depends on the output of the forwarding network, this extends the combinatorial critical path. The resulting critical path (11 logic levels through instruction decode → branch comparison → BHT update) achieves timing closure at 125 MHz with 1.685 ns positive slack.
+* **Implementation**: The branch target calculation and comparison logic operates in the ID stage using forwarded operands from the hazard unit. Because comparison depends on the output of the forwarding network, this extends the combinatorial critical path. The resulting critical path (13 logic levels through instruction decode → branch comparison → BHT update) achieves timing closure at 150 MHz with 0.993 ns positive slack.
 
 ### **Hardware-Managed Interlocking vs. Compiler-Inserted NOPs**
 
@@ -244,38 +244,38 @@ Implementation was performed using Vivado v.2026.1 targeting the **Kintex-7 xc7k
 
 | Metric | Value | Status |
 | :--- | :--- | :---: |
-| Target Clock Period | 8.000 ns (125 MHz) | — |
-| Worst Negative Slack (WNS) | +1.685 ns | ✅ MET |
+| Target Clock Period | 6.666 ns (150 MHz) | — |
+| Worst Negative Slack (WNS) | +0.993 ns | ✅ MET |
 | Total Negative Slack (TNS) | 0.000 ns | ✅ MET |
-| Worst Hold Slack (WHS) | +0.075 ns | ✅ MET |
-| Worst Pulse Width Slack (WPWS) | +3.326 ns | ✅ MET |
-| Failing Endpoints | 0 / 6,204 | ✅ |
-| **Maximum Achievable Frequency** | **≈ 158 MHz** (Tmin = 6.315 ns) | — |
+| Worst Hold Slack (WHS) | +0.078 ns | ✅ MET |
+| Worst Pulse Width Slack (WPWS) | +2.659 ns | ✅ MET |
+| Failing Endpoints | 0 / 6,289 | ✅ |
+| **Maximum Achievable Frequency** | **≈ 176 MHz** (Tmin = 5.673 ns) | — |
 
-**Critical Setup Path**: `u_fetch/if_id_inst_reg[4]/C` → `u_fetch/bht_table_reg` — 11 logic levels, 5.782 ns data path delay (16.9% logic, 83.1% routing).
+**Critical Setup Path**: `u_fetch/if_id_inst_reg[0]/C` → `u_fetch/bht_table_reg` — 13 logic levels, 5.168 ns data path delay (19.4% logic, 80.6% routing).
 
 ### **7.2. Resource Utilization**
 
 | Resource | Used | Available | Utilization |
 | :--- | ---: | ---: | ---: |
-| Slice LUTs | 2,072 | 203,800 | 1.02% |
-| ↳ LUT as Logic | 1,548 | 203,800 | 0.76% |
+| Slice LUTs | 2,079 | 203,800 | 1.02% |
+| ↳ LUT as Logic | 1,555 | 203,800 | 0.76% |
 | ↳ LUT as Distributed RAM | 524 | 64,000 | 0.82% |
-| Slice Registers (FFs) | 987 | 407,600 | 0.24% |
+| Slice Registers (FFs) | 1,030 | 407,600 | 0.25% |
 | Block RAM (RAMB36E1) | 2 | 445 | 0.45% |
 | DSP48E1 | 0 | 840 | 0.00% |
 | Bonded IOBs | 6 | 500 | 1.20% |
-| CARRY4 | 67 | 50,950 | 0.13% |
-| F7/F8 Muxes | 124 | 203,800 | 0.06% |
+| CARRY4 | 75 | 50,950 | 0.15% |
+| F7/F8 Muxes | 128 | 203,800 | 0.06% |
 | BUFG | 1 | 32 | 3.13% |
 
 ### **7.3. Power Analysis**
 
 | Power Component | Value |
 | :--- | ---: |
-| **Total On-Chip Power** | **202 mW** |
-| Dynamic Power | 44 mW (21.8%) |
-| Static Power | 158 mW (78.2%) |
+| **Total On-Chip Power** | **204 mW** |
+| Dynamic Power | 46 mW (22.5%) |
+| Static Power | 158 mW (77.5%) |
 | Junction Temperature | 25.4°C |
 | Thermal Margin | 74.6°C |
 
@@ -283,15 +283,15 @@ Implementation was performed using Vivado v.2026.1 targeting the **Kintex-7 xc7k
 
 | Module | Function | Power | % Dynamic |
 | :--- | :--- | ---: | ---: |
-| `u_fetch` | Branch Predictor + Fetch | 16 mW | 36.4% |
-| `u_execute` | ALU + Pipeline Regs | 8 mW | 18.2% |
-| `u_decode` | Decode + Branch Resolution | 6 mW | 13.6% |
-| `spi_ctrl` | SPI Master Controller | 2 mW | 4.5% |
-| `u_dcache` | L1 Data Cache | 2 mW | 4.5% |
-| `u_icache` | L1 Instruction Cache | 2 mW | 4.5% |
-| `u_memory` | Memory Stage | 2 mW | 4.5% |
-| `u_ram` | Dual-Port BRAM | 2 mW | 4.5% |
-| `u_regfile` | Register File | 2 mW | 4.5% |
+| `u_fetch` | Branch Predictor + Fetch | 17 mW | 37.0% |
+| `u_execute` | ALU + Pipeline Regs | 9 mW | 19.6% |
+| `u_decode` | Decode + Branch Resolution | 5 mW | 10.9% |
+| `u_memory` | Memory Stage | 3 mW | 6.5% |
+| `u_ram` | Dual-Port BRAM | 3 mW | 6.5% |
+| `spi_ctrl` | SPI Master Controller | 2 mW | 4.3% |
+| `u_dcache` | L1 Data Cache | 2 mW | 4.3% |
+| `u_icache` | L1 Instruction Cache | 2 mW | 4.3% |
+| `u_regfile` | Register File | 2 mW | 4.3% |
 
 ## **8\. Simulation & Verification Results**
 

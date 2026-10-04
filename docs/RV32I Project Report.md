@@ -143,51 +143,52 @@ The processor supports a subset of the RV32I Base Integer Instruction Set, total
 ## 4. FPGA Implementation Results
 
 ### 4.1 Timing Analysis
-Target Clock: 125 MHz (8.000 ns period)
+Target Clock: 150 MHz (6.666 ns period)
 
-- **Worst Negative Slack (WNS)**: +1.685 ns (MET)
-- **Worst Hold Slack (WHS)**: +0.075 ns (MET)
-- **Total Negative Slack (TNS)**: 0.000 ns (0 failing endpoints out of 6,204)
-- **Worst Pulse Width Slack (WPWS)**: +3.326 ns (MET)
-- **Maximum Frequency (Fmax)**: ≈ 158 MHz (Tmin = 8.000 - 1.685 = 6.315 ns)
+- **Worst Negative Slack (WNS)**: +0.993 ns (MET)
+- **Worst Hold Slack (WHS)**: +0.078 ns (MET)
+- **Total Negative Slack (TNS)**: 0.000 ns (0 failing endpoints out of 6,289)
+- **Worst Pulse Width Slack (WPWS)**: +2.659 ns (MET)
+- **Maximum Frequency (Fmax)**: ≈ 176 MHz (Tmin = 6.666 - 0.993 = 5.673 ns)
 
 **Critical Paths:**
-- *Setup Path*: `u_fetch/if_id_inst_reg[4]/C` → `u_fetch/bht_table` (11 logic levels, 5.782 ns data path delay: 0.975 ns logic / 4.807 ns routing)
-- *Hold Path*: `u_execute/ex_mem_rs2_data_reg[11]/C` → `u_ram/dram_reg/DIADI[11]` (0 logic levels, 0.294 ns delay)
+- *Setup Path*: `u_fetch/if_id_inst_reg[0]/C` → `u_fetch/bht_table` (13 logic levels, 5.168 ns data path delay: 1.001 ns logic / 4.167 ns routing)
+- *Hold Path*: `u_dcache/mem_wdata_r_reg[4]/C` → `u_ram/dram_reg/DIADI[4]` (0 logic levels, 0.237 ns delay)
 
 ### 4.2 Resource Utilization
 | Resource | Utilized | Available | % Utilization |
 |----------|----------|-----------|---------------|
-| Slice LUTs | 2,072 | 203,800 | 1.02% |
-| - Logic | 1,548 | 203,800 | 0.76% |
-| - Distributed RAM | 524 | 203,800 | 0.82% |
-| Slice Registers (FFs) | 987 | 407,600 | 0.24% |
-| - FDCE (Async Reset) | 914 | - | - |
+| Slice LUTs | 2,079 | 203,800 | 1.02% |
+| - Logic | 1,555 | 203,800 | 0.76% |
+| - Distributed RAM | 524 | 64,000 | 0.82% |
+| Slice Registers (FFs) | 1,030 | 407,600 | 0.25% |
+| - FDCE (Async Reset) | 957 | - | - |
 | - FDRE (Sync Reset) | 66 | - | - |
 | - FDPE (Async Set) | 7 | - | - |
 | Block RAM (RAMB36E1)| 2 | 445 | 0.45% |
 | DSP48E1 | 0 | 840 | 0.00% |
 | Bonded IOBs | 6 | 500 | 1.20% |
-| Slices | 634 | 50,950 | 1.24% |
+| Slices | 635 | 50,950 | 1.25% |
 
-*Other metrics: F7 Muxes: 120, F8 Muxes: 4, CARRY4: 67, BUFG: 1. IOBs used for `clk`, `rst_n`, `spi_miso`, `spi_cs_n`, `spi_mosi`, `spi_sclk`.*
+*Other metrics: F7 Muxes: 120, F8 Muxes: 8, CARRY4: 75, BUFG: 1. IOBs used for `clk`, `rst_n`, `spi_miso`, `spi_cs_n`, `spi_mosi`, `spi_sclk`.*
 
 ### 4.3 Power Analysis
-- **Total On-Chip Power**: 202 mW
-- **Static Power**: 158 mW (78.22%)
-- **Dynamic Power**: 44 mW (21.78%)
-  - Routing Signals: 17 mW (38.64% of dynamic)
-  - Slice Logic: 13 mW (29.55% of dynamic)
-  - Clocks: 11 mW (25.00% of dynamic)
+- **Total On-Chip Power**: 204 mW
+- **Static Power**: 158 mW (77.45%)
+- **Dynamic Power**: 46 mW (22.55%)
+  - Routing Signals: 17 mW (36.96% of dynamic)
+  - Clocks: 13 mW (28.26% of dynamic)
+  - Slice Logic: 12 mW (26.09% of dynamic)
   - Block RAM: 2 mW
-  - I/O: 1 mW
+  - I/O: 2 mW
 - **Thermal Metrics**: Junction Temperature: 25.4°C / Thermal Margin: 74.6°C
 
 **Per-Module Dynamic Power Breakdown:**
-- `u_fetch` (Branch Predictor): 16 mW (36.36%)
-- `u_execute` (ALU): 8 mW (18.18%)
-- `u_decode`: 6 mW (13.64%)
-- `spi_ctrl`, `u_dcache`, `u_icache`, `u_memory`, `u_ram`, `u_regfile`: 2 mW each (4.55% each)
+- `u_fetch` (Branch Predictor): 17 mW (36.96%)
+- `u_execute` (ALU): 9 mW (19.57%)
+- `u_decode`: 5 mW (10.87%)
+- `u_memory`, `u_ram`: 3 mW each (6.52% each)
+- `spi_ctrl`, `u_dcache`, `u_icache`, `u_regfile`: 2 mW each (4.35% each)
 
 ### 4.4 Methodology Warnings
 - **SYNTH-5 (48 violations)**: Distributed RAM mapped due to timing constraints.
@@ -238,4 +239,4 @@ Based on the architectural analysis and timing reports, the following non-invasi
 Currently, branches are resolved early in the ID stage. Relocating branch resolution to the EX stage introduces an architectural trade-off:
 - **Pros**: It would break the 11-level critical setup path originating in IF/ID, increasing the achievable Fmax. (This approach is employed in production cores such as the ARM Cortex-M4).
 - **Cons**: It increases the branch misprediction penalty from 1 cycle to 2 cycles. Furthermore, it is a highly invasive change requiring modifications across `decode.v`, `hazard.v`, `fetch.v`, and `system.v`.
-- **Conclusion**: Given that the current design meets timing comfortably with a +1.685 ns setup slack at 125 MHz, this structural change is only recommended if higher frequency targets (e.g., > 160 MHz) are mandated in future revisions.
+- **Conclusion**: Given that the current design meets timing at 150 MHz with a +0.993 ns setup slack, this structural change is only recommended if higher frequency targets (e.g., > 180 MHz) are mandated in future revisions.
