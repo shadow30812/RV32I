@@ -1,0 +1,9 @@
+# Expected final state for bug4_jal_false_dependency.s
+# xN <value>: register; M <byte address> <word>: data RAM; B <count>: branch/JAL
+# resolutions, each counted once, excluding the final halt loop.
+
+x1 0x00000010
+x8 0x00000009
+x20 0x00000010
+x21 0x00000001
+B 3

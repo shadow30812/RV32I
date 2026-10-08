@@ -1,0 +1,11 @@
+# Expected final state for bug3_stale_branch.s
+# xN <value>: register; M <byte address> <word>: data RAM; B <count>: branch/JAL
+# resolutions, each counted once, excluding the final halt loop.
+
+x5 0x00000001
+x6 0x0000000C
+x7 0x00000006
+x8 0x00000006
+x9 0x00000000
+x10 0x00000006
+B 12

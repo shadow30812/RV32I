@@ -1,0 +1,10 @@
+# Expected final state for bug1_jal_link_forward.s
+# xN <value>: register; M <byte address> <word>: data RAM; B <count>: branch/JAL
+# resolutions, each counted once, excluding the final halt loop.
+
+x1 0x00000010
+x2 0x00000010
+x10 0x00000003
+x11 0x00000003
+x12 0x00000030
+B 6

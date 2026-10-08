@@ -1,0 +1,13 @@
+# Expected final state for bug2_dcache_writethrough.s
+# xN <value>: register; M <byte address> <word>: data RAM; B <count>: branch/JAL
+# resolutions, each counted once, excluding the final halt loop.
+
+x1 0x00000111
+x2 0x00000222
+x3 0x00000333
+x4 0x00000333
+x9 0x00000222
+x10 0x00000555
+M 0x000 0x00000222
+M 0x100 0x00000333
+B 0

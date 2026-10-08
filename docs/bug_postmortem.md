@@ -30,8 +30,8 @@ Run all of them with `tests/run_regression.sh`.
 
 | | |
 | :--- | :--- |
-| **Symptom** | A branch that depends on the instruction right before it can go the wrong way. In `bug3_stale_branch`, iterations 2 to 5 take the wrong path, giving x8 = 7 and x9 = 8 (expected 9 and 6). |
-| **Exposing test** | `tests/programs/bug3_stale_branch.s`: `andi x5, x6, 1` followed directly by `beq x5, x0, even`, in a warm loop, so no I-cache stall masks the problem. |
+| **Symptom** | A branch that depends on the instruction right before it can go the wrong way. In `bug3_stale_branch`, two of the six iterations take the wrong path, giving x8 = 4 and x9 = 2 (expected 6 and 0). |
+| **Exposing test** | `tests/programs/bug3_stale_branch.s`: `andi x5, x6, 1` followed directly by `beq x5, x0, even`, in a warm loop, so no I-cache stall masks the problem. x6 is always even, so the predictor learns "taken", while the stale x5 left by the previous iteration says "not taken". |
 | **Root cause** | While the branch waits in ID for its operand (`branch_stall`), its comparison uses the stale register-file value. `actual_mispredict` was masked only by `stall_id` (`stall_mem \|\| stall_icache`), not by the ID hazard stall. When the stale outcome disagreed with the prediction, decode flagged a mispredict. Fetch then replaced IF/ID with a NOP, which squashed the branch, and redirected down the stale path. |
 | **Why it escaped** | On cold code, the I-cache miss for the next fetch raised `stall_icache` in the same cycle and masked the mispredict. The bug only appears in warm loops. In the benchmark's loops, the stale outcome happened to agree with the prediction. |
 | **Fix** | `hazard.v` exports `id_hazard_stall`; `system.v` wires it to a new `hold` input on `decode.v`. A branch resolves only when `!stall && !hold`. The regression testbench also asserts this on every cycle. |
